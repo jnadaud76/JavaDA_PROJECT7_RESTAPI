@@ -1,7 +1,9 @@
 package com.nnk.springboot.domain;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import javax.validation.constraints.NotNull;
+
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -11,17 +13,17 @@ public class CurvePoint {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="Id")
     private Integer id;
-
+    @NotNull(message = "must not be null")
     @Column(name="CurveId")
     private Integer curveId;
-
-    private Timestamp asOfDate;
-
+    @Column(name="asOfDate")
+    private LocalDateTime asOfDate;
+    @Column(name="term")
     private Double term;
-
+    @Column(name="value")
     private Double value;
-
-    private Timestamp creationDate;
+    @Column(name="creationDate")
+    private LocalDateTime creationDate;
 
     public CurvePoint() {
     }
@@ -48,11 +50,11 @@ public class CurvePoint {
         this.curveId = curveId;
     }
 
-    public Timestamp getAsOfDate() {
+    public LocalDateTime getAsOfDate() {
         return asOfDate;
     }
 
-    public void setAsOfDate(Timestamp asOfDate) {
+    public void setAsOfDate(LocalDateTime asOfDate) {
         this.asOfDate = asOfDate;
     }
 
@@ -72,11 +74,11 @@ public class CurvePoint {
         this.value = value;
     }
 
-    public Timestamp getCreationDate() {
+    public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(Timestamp creationDate) {
+    public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
 }

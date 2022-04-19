@@ -1,5 +1,7 @@
 package com.nnk.springboot.domain;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,13 +11,16 @@ public class Rating {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="Id")
     private Integer id;
-
+    @Length(max=125)
+    @Column(name="moodysRating")
     private String moodysRating;
-
+    @Length(max=125)
+    @Column(name="sandPRating")
     private String sandPRating;
-
+    @Length(max=125)
+    @Column(name="fitchRating")
     private String fitchRating;
-
+    @Column(name="orderNumber")
     private Integer orderNumber;
 
     public Rating() {

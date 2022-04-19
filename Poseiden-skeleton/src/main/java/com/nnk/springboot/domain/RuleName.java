@@ -1,5 +1,7 @@
 package com.nnk.springboot.domain;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,17 +11,19 @@ public class RuleName {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="Id")
     private Integer id;
-
+    @Length(max=125)
     private String name;
-
+    @Length(max=125)
     private String description;
-
+    @Length(max=125)
     private String json;
-
+    @Length(max=512)
     private String template;
-
+    @Length(max=125)
+    @Column(name="sqlStr")
     private String sqlStr;
-
+    @Column(name="sqlPart")
+    @Length(max=125)
     private String sqlPart;
 
     public RuleName() {

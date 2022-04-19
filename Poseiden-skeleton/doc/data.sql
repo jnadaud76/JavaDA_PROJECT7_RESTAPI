@@ -1,7 +1,7 @@
 CREATE DATABASE IF NOT EXISTS demo DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE demo;
 CREATE TABLE IF NOT EXISTS BidList (
-  BidListId tinyint(4) NOT NULL AUTO_INCREMENT,
+  BidListId INT NOT NULL AUTO_INCREMENT,
   account VARCHAR(30) NOT NULL,
   type VARCHAR(30) NOT NULL,
   bidQuantity DOUBLE,
@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS BidList (
   trader VARCHAR(125),
   book VARCHAR(125),
   creationName VARCHAR(125),
-  creationDate TIMESTAMP ,
+  creationDate TIMESTAMP,
   revisionName VARCHAR(125),
   revisionDate TIMESTAMP ,
   dealName VARCHAR(125),
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS BidList (
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS Trade (
-  TradeId tinyint(4) NOT NULL AUTO_INCREMENT,
+  TradeId INT NOT NULL AUTO_INCREMENT,
   account VARCHAR(30) NOT NULL,
   type VARCHAR(30) NOT NULL,
   buyQuantity DOUBLE,
@@ -54,8 +54,8 @@ CREATE TABLE IF NOT EXISTS Trade (
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS CurvePoint (
-  Id tinyint(4) NOT NULL AUTO_INCREMENT,
-  CurveId tinyint,
+  Id INT NOT NULL AUTO_INCREMENT,
+  CurveId INT NOT NULL,
   asOfDate TIMESTAMP,
   term DOUBLE ,
   value DOUBLE ,
@@ -65,17 +65,17 @@ CREATE TABLE IF NOT EXISTS CurvePoint (
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS Rating (
-  Id tinyint(4) NOT NULL AUTO_INCREMENT,
+  Id INT NOT NULL AUTO_INCREMENT,
   moodysRating VARCHAR(125),
   sandPRating VARCHAR(125),
   fitchRating VARCHAR(125),
-  orderNumber tinyint,
+  orderNumber INT,
 
   PRIMARY KEY (Id)
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS RuleName (
-  Id tinyint(4) NOT NULL AUTO_INCREMENT,
+  Id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(125),
   description VARCHAR(125),
   json VARCHAR(125),
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS RuleName (
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS Users (
-  Id tinyint(4) NOT NULL AUTO_INCREMENT,
+  Id INT NOT NULL AUTO_INCREMENT,
   username VARCHAR(125),
   password VARCHAR(125),
   fullname VARCHAR(125),

@@ -1,5 +1,7 @@
 package com.nnk.springboot.domain;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -11,43 +13,48 @@ public class Trade {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "TradeId")
     private Integer tradeId;
-
+    @Length(max=30)
     private String account;
-
+    @Length(max=30)
     private String type;
-
+    @Column(name="buyQuantity")
     private Double buyQuantity;
-
+    @Column(name="sellQuantity")
     private Double sellQuantity;
-
+    @Column(name="sellPrice")
     private Double sellPrice;
-
+    @Length(max=125)
     private String benchmark;
-
+    @Column(name="tradeDate")
     private Timestamp tradeDate;
-
+    @Length(max=125)
     private String security;
-
+    @Length(max=10)
     private String status;
-
+    @Length(max=125)
     private String trader;
-
+    @Length(max=125)
     private String book;
-
+    @Length(max=125)
+    @Column(name="creationName")
     private String creationName;
-    
+    @Column(name="creationDate")
     private Timestamp creationDate;
-    
+    @Length(max=125)
+    @Column(name="revisionName")
     private String revisionName;
-    
+    @Column(name="revisionDate")
     private Timestamp revisionDate;
-    
+    @Length(max=125)
+    @Column(name="dealName")
     private String dealName;
-    
+    @Length(max=125)
+    @Column(name="dealType")
     private String dealType;
-    
+    @Length(max=125)
+    @Column(name="sourceListId")
     private String sourceListId;
-    
+    @Length(max=125)
     private String side;
 
     public Trade() {

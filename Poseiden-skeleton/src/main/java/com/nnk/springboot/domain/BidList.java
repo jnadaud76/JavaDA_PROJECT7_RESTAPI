@@ -1,7 +1,12 @@
 package com.nnk.springboot.domain;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "bidlist")
@@ -10,47 +15,54 @@ public class BidList {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name = "BidListId")
     private Integer id;
-
+    @NotNull
+    @Length(max=30)
     private String account;
-
+    @NotNull
+    @Length(max=30)
     private String type;
-
+    @Column(name="bidQuantity")
     private Double bidQuantity;
-
+    @Column(name="askQuantity")
     private Double askQuantity;
 
     private Double bid;
 
     private Double ask;
-
+    @Length(max=125)
     private String benchmark;
-
-    private Timestamp bidListDate;
-
+    @Column(name="bidListDate")
+    private LocalDateTime bidListDate;
+    @Length(max=125)
     private String commentary;
-
+    @Length(max=125)
     private String security;
-
+    @Length(max=10)
     private String status;
-
+    @Length(max=125)
     private String trader;
-
+    @Length(max=125)
     private String book;
-
+    @Length(max=125)
+    @Column(name="creationName")
     private String creationName;
-
+    @Column(name="creationDate")
     private Timestamp creationDate;
-
+    @Length(max=125)
+    @Column(name="revisionName")
     private String revisionName;
-
-    private Timestamp revisionDate;
-
+    @Column(name="revisionDate")
+    private LocalDateTime revisionDate;
+    @Length(max=125)
+    @Column(name="dealName")
     private String dealName;
-
+    @Length(max=125)
+    @Column(name="dealType")
     private String dealType;
-
+    @Length(max=125)
+    @Column(name="sourceListId")
     private String sourceListId;
-
+    @Length(max=125)
     private String side;
 
     public BidList() {
@@ -126,11 +138,11 @@ public class BidList {
         this.benchmark = benchmark;
     }
 
-    public Timestamp getBidListDate() {
+    public LocalDateTime getBidListDate() {
         return bidListDate;
     }
 
-    public void setBidListDate(Timestamp bidListDate) {
+    public void setBidListDate(LocalDateTime bidListDate) {
         this.bidListDate = bidListDate;
     }
 
@@ -198,11 +210,11 @@ public class BidList {
         this.revisionName = revisionName;
     }
 
-    public Timestamp getRevisionDate() {
+    public LocalDateTime getRevisionDate() {
         return revisionDate;
     }
 
-    public void setRevisionDate(Timestamp revisionDate) {
+    public void setRevisionDate(LocalDateTime revisionDate) {
         this.revisionDate = revisionDate;
     }
 
