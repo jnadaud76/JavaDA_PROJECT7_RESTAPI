@@ -20,9 +20,9 @@ public class RuleName {
     @Length(max=512)
     private String template;
     @Length(max=125)
-    @Column(name="sqlStr")
+    @Column(name= "sql_Str")
     private String sqlStr;
-    @Column(name="sqlPart")
+    @Column(name= "sql_Part")
     @Length(max=125)
     private String sqlPart;
 

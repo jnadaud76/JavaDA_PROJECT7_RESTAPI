@@ -11,21 +11,21 @@ import java.sql.Timestamp;
 public class Trade {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "TradeId")
+    @Column(name = "Trade_Id")
     private Integer tradeId;
     @Length(max=30)
     private String account;
     @Length(max=30)
     private String type;
-    @Column(name="buyQuantity")
+    @Column(name="buy_Quantity")
     private Double buyQuantity;
-    @Column(name="sellQuantity")
+    @Column(name="sell_Quantity")
     private Double sellQuantity;
-    @Column(name="sellPrice")
+    @Column(name="sell_Price")
     private Double sellPrice;
     @Length(max=125)
     private String benchmark;
-    @Column(name="tradeDate")
+    @Column(name="trade_Date")
     private Timestamp tradeDate;
     @Length(max=125)
     private String security;
@@ -36,23 +36,23 @@ public class Trade {
     @Length(max=125)
     private String book;
     @Length(max=125)
-    @Column(name="creationName")
+    @Column(name="creation_Name")
     private String creationName;
-    @Column(name="creationDate")
+    @Column(name="creation_Date")
     private Timestamp creationDate;
     @Length(max=125)
-    @Column(name="revisionName")
+    @Column(name="revision_Name")
     private String revisionName;
-    @Column(name="revisionDate")
+    @Column(name="revision_Date")
     private Timestamp revisionDate;
     @Length(max=125)
-    @Column(name="dealName")
+    @Column(name="deal_Name")
     private String dealName;
     @Length(max=125)
-    @Column(name="dealType")
+    @Column(name="deal_Type")
     private String dealType;
     @Length(max=125)
-    @Column(name="sourceListId")
+    @Column(name="source_List_Id")
     private String sourceListId;
     @Length(max=125)
     private String side;
@@ -101,8 +101,8 @@ public class Trade {
         return sellQuantity;
     }
 
-    public void setSellQantity(Double sellQantity) {
-        this.sellQuantity = sellQantity;
+    public void setSellQuantity(Double sellQuantity) {
+        this.sellQuantity = sellQuantity;
     }
 
     public Double getSellPrice() {

@@ -36,14 +36,18 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http
                 .authorizeRequests()
-                .antMatchers( "/user/add", "/login", "/").permitAll()
+                .antMatchers( "/static.css/**", "/").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
+                .antMatchers("/user/*").hasAuthority("ADMIN")
+                // .antMatchers("/app/user").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/home").permitAll()
-                .and()
-                .httpBasic();
+                //.loginPage("/login").permitAll()
+                .defaultSuccessUrl("/bidList/list", true);
+
+                //.and()
+                //.httpBasic();
 
 
     }
@@ -55,7 +59,8 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/swagger-resources/**",
                 "/configuration/security",
                 "/swagger-ui.html",
-                "/webjars/**"
+                "/webjars/**",
+                "/css/**"
         );
     }
 }

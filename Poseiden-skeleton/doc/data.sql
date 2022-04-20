@@ -1,75 +1,75 @@
-CREATE DATABASE IF NOT EXISTS demo DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE demo;
+CREATE DATABASE IF NOT EXISTS `demo` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `demo`;
 CREATE TABLE IF NOT EXISTS BidList (
-  BidListId INT NOT NULL AUTO_INCREMENT,
+  Bid_List_Id INT NOT NULL AUTO_INCREMENT,
   account VARCHAR(30) NOT NULL,
   type VARCHAR(30) NOT NULL,
-  bidQuantity DOUBLE,
-  askQuantity DOUBLE,
+  bid_Quantity DOUBLE,
+  ask_Quantity DOUBLE,
   bid DOUBLE ,
   ask DOUBLE,
   benchmark VARCHAR(125),
-  bidListDate TIMESTAMP,
+  bid_List_Date TIMESTAMP,
   commentary VARCHAR(125),
   security VARCHAR(125),
   status VARCHAR(10),
   trader VARCHAR(125),
   book VARCHAR(125),
-  creationName VARCHAR(125),
-  creationDate TIMESTAMP,
-  revisionName VARCHAR(125),
-  revisionDate TIMESTAMP ,
-  dealName VARCHAR(125),
-  dealType VARCHAR(125),
-  sourceListId VARCHAR(125),
+  creation_Name VARCHAR(125),
+  creation_Date TIMESTAMP,
+  revision_Name VARCHAR(125),
+  revision_Date TIMESTAMP ,
+  deal_Name VARCHAR(125),
+  deal_Type VARCHAR(125),
+  source_List_Id VARCHAR(125),
   side VARCHAR(125),
 
-  PRIMARY KEY (BidListId)
+  PRIMARY KEY (Bid_List_Id)
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS Trade (
-  TradeId INT NOT NULL AUTO_INCREMENT,
+  Trade_Id INT NOT NULL AUTO_INCREMENT,
   account VARCHAR(30) NOT NULL,
   type VARCHAR(30) NOT NULL,
-  buyQuantity DOUBLE,
-  sellQuantity DOUBLE,
-  buyPrice DOUBLE ,
-  sellPrice DOUBLE,
-  tradeDate TIMESTAMP,
+  buy_Quantity DOUBLE,
+  sell_Quantity DOUBLE,
+  buy_Price DOUBLE ,
+  sell_Price DOUBLE,
+  trade_Date TIMESTAMP,
   security VARCHAR(125),
   status VARCHAR(10),
   trader VARCHAR(125),
   benchmark VARCHAR(125),
   book VARCHAR(125),
-  creationName VARCHAR(125),
-  creationDate TIMESTAMP ,
-  revisionName VARCHAR(125),
-  revisionDate TIMESTAMP ,
-  dealName VARCHAR(125),
-  dealType VARCHAR(125),
-  sourceListId VARCHAR(125),
+  creation_Name VARCHAR(125),
+  creation_Date TIMESTAMP ,
+  revision_Name VARCHAR(125),
+  revision_Date TIMESTAMP ,
+  deal_Name VARCHAR(125),
+  deal_Type VARCHAR(125),
+  source_List_Id VARCHAR(125),
   side VARCHAR(125),
 
-  PRIMARY KEY (TradeId)
+  PRIMARY KEY (Trade_Id)
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS CurvePoint (
   Id INT NOT NULL AUTO_INCREMENT,
-  CurveId INT NOT NULL,
-  asOfDate TIMESTAMP,
+  Curve_Id INT NOT NULL,
+  as_Of_Date TIMESTAMP,
   term DOUBLE ,
   value DOUBLE ,
-  creationDate TIMESTAMP ,
+  creation_Date TIMESTAMP,
 
   PRIMARY KEY (Id)
 )ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS Rating (
   Id INT NOT NULL AUTO_INCREMENT,
-  moodysRating VARCHAR(125),
+  moodys_Rating VARCHAR(125),
   sandPRating VARCHAR(125),
-  fitchRating VARCHAR(125),
-  orderNumber INT,
+  fitch_Rating VARCHAR(125),
+  order_Number INT,
 
   PRIMARY KEY (Id)
 )ENGINE=InnoDB;
@@ -80,8 +80,8 @@ CREATE TABLE IF NOT EXISTS RuleName (
   description VARCHAR(125),
   json VARCHAR(125),
   template VARCHAR(512),
-  sqlStr VARCHAR(125),
-  sqlPart VARCHAR(125),
+  sql_Str VARCHAR(125),
+  sql_Part VARCHAR(125),
 
   PRIMARY KEY (Id)
 )ENGINE=InnoDB;

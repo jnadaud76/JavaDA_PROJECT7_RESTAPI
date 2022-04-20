@@ -2,11 +2,15 @@ package com.nnk.springboot.util;
 import com.nnk.springboot.domain.User;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
+
 import java.util.Collection;
-import java.util.List;
+
+import java.util.HashSet;
+
+import java.util.Set;
 
 public class MyUserPrincipal implements UserDetails {
 
@@ -19,7 +23,9 @@ public class MyUserPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-           return null;
+       Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+        grantedAuthorities.add(new SimpleGrantedAuthority(user.getRole()));
+           return grantedAuthorities;
     }
 
     @Override

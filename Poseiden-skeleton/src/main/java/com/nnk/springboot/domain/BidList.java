@@ -3,7 +3,7 @@ package com.nnk.springboot.domain;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -13,17 +13,17 @@ import java.time.LocalDateTime;
 public class BidList {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    @Column(name = "BidListId")
+    @Column(name = "Bid_List_Id")
     private Integer id;
-    @NotNull
+    @NotBlank(message = "Account is mandatory")
     @Length(max=30)
     private String account;
-    @NotNull
+    @NotBlank(message = "Type is mandatory")
     @Length(max=30)
     private String type;
-    @Column(name="bidQuantity")
+    @Column(name= "bid_Quantity")
     private Double bidQuantity;
-    @Column(name="askQuantity")
+    @Column(name= "ask_Quantity")
     private Double askQuantity;
 
     private Double bid;
@@ -31,7 +31,7 @@ public class BidList {
     private Double ask;
     @Length(max=125)
     private String benchmark;
-    @Column(name="bidListDate")
+    @Column(name= "bid_List_Date")
     private LocalDateTime bidListDate;
     @Length(max=125)
     private String commentary;
@@ -44,23 +44,23 @@ public class BidList {
     @Length(max=125)
     private String book;
     @Length(max=125)
-    @Column(name="creationName")
+    @Column(name= "creation_Name")
     private String creationName;
-    @Column(name="creationDate")
+    @Column(name= "creation_Date")
     private Timestamp creationDate;
     @Length(max=125)
-    @Column(name="revisionName")
+    @Column(name= "revision_Name")
     private String revisionName;
-    @Column(name="revisionDate")
+    @Column(name= "revision_Date")
     private LocalDateTime revisionDate;
     @Length(max=125)
-    @Column(name="dealName")
+    @Column(name= "deal_Name")
     private String dealName;
     @Length(max=125)
-    @Column(name="dealType")
+    @Column(name= "deal_Type")
     private String dealType;
     @Length(max=125)
-    @Column(name="sourceListId")
+    @Column(name= "source_List_Id")
     private String sourceListId;
     @Length(max=125)
     private String side;

@@ -12,15 +12,15 @@ public class Rating {
     @Column(name="Id")
     private Integer id;
     @Length(max=125)
-    @Column(name="moodysRating")
+    @Column(name= "moodys_Rating")
     private String moodysRating;
     @Length(max=125)
     @Column(name="sandPRating")
     private String sandPRating;
     @Length(max=125)
-    @Column(name="fitchRating")
+    @Column(name= "fitch_Rating")
     private String fitchRating;
-    @Column(name="orderNumber")
+    @Column(name= "order_Number")
     private Integer orderNumber;
 
     public Rating() {
