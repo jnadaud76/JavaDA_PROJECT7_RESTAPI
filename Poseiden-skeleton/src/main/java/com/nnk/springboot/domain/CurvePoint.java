@@ -1,7 +1,7 @@
 package com.nnk.springboot.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
@@ -13,7 +13,7 @@ public class CurvePoint {
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="Id")
     private Integer id;
-    @NotBlank(message = "must not be null")
+    @NotNull(message = "must not be null")
     @Column(name= "Curve_Id")
     private Integer curveId;
     @Column(name= "as_Of_Date")

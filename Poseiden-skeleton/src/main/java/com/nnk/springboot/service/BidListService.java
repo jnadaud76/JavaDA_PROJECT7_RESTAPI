@@ -5,29 +5,28 @@ import com.nnk.springboot.dto.BidListDto;
 import com.nnk.springboot.repositories.BidListRepository;
 import com.nnk.springboot.util.IConversion;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BidListService implements IBidListService{
 
-    @Autowired
-    BidListRepository bidListRepository;
+    private final BidListRepository bidListRepository;
 
-    @Autowired
-    IConversion conversion;
+    private final IConversion conversion;
 
-   public List<BidListDto> getBidLists() {
+    public BidListService(BidListRepository bidListRepository, IConversion conversion) {
+        this.bidListRepository = bidListRepository;
+        this.conversion = conversion;
+    }
+
+    public List<BidListDto> getBidLists() {
        List<BidList> bidLists = bidListRepository.findAll();
-       List<BidListDto> bidListFullDtos = new ArrayList<>();
-       for (BidList b : bidLists) {
-           BidListDto bidListFullDto = conversion.bidListToBidListDto(b);
-           bidListFullDtos.add(bidListFullDto);
-       }
-    return bidListFullDtos;
+        return bidLists.stream()
+                .map(conversion::bidListToBidListDto)
+                .collect(Collectors.toList());
 
    }
 
