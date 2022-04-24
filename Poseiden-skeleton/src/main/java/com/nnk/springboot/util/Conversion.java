@@ -2,8 +2,10 @@ package com.nnk.springboot.util;
 
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.CurvePoint;
+import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.dto.BidListDto;
 import com.nnk.springboot.dto.CurvePointDto;
+import com.nnk.springboot.dto.RatingDto;
 
 import org.springframework.stereotype.Component;
 
@@ -26,5 +28,15 @@ public class Conversion implements IConversion{
         curvePointDto.setTerm(curvePoint.getTerm());
         curvePointDto.setValue(curvePoint.getValue());
         return curvePointDto;
+    }
+
+    public RatingDto ratingToRatingDto(final Rating rating) {
+        RatingDto ratingDto = new RatingDto();
+        ratingDto.setId(rating.getId());
+        ratingDto.setMoodysRating(rating.getMoodysRating());
+        ratingDto.setSandPRating(rating.getSandPRating());
+        ratingDto.setFitchRating(rating.getFitchRating());
+        ratingDto.setOrderNumber(rating.getOrderNumber());
+        return ratingDto;
     }
 }
