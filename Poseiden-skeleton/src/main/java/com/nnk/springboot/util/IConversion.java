@@ -3,9 +3,11 @@ package com.nnk.springboot.util;
 import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.domain.Rating;
+import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.dto.BidListDto;
 import com.nnk.springboot.dto.CurvePointDto;
 import com.nnk.springboot.dto.RatingDto;
+import com.nnk.springboot.dto.RuleNameDto;
 
 public interface IConversion {
 
@@ -14,4 +16,6 @@ public interface IConversion {
     CurvePointDto curvePointToCurvePointDto (CurvePoint curvePoint);
 
     RatingDto ratingToRatingDto(Rating rating);
+
+    RuleNameDto ruleNameToRuleNameDto(RuleName ruleName);
 }
