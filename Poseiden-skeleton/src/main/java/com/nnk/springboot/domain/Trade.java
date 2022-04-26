@@ -12,7 +12,7 @@ public class Trade {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Trade_Id")
-    private Integer tradeId;
+    private Integer id;
     @Length(max=30)
     private String account;
     @Length(max=30)
@@ -65,12 +65,12 @@ public class Trade {
         this.type = type;
     }
 
-    public Integer getTradeId() {
-        return tradeId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setTradeId(Integer tradeId) {
-        this.tradeId = tradeId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getAccount() {

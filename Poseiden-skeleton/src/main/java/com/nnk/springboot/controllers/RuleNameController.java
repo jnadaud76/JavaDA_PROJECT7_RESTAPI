@@ -30,7 +30,7 @@ public class RuleNameController {
     }
 
     @GetMapping("/ruleName/add")
-    public String addRuleForm(RuleName bid) {
+    public String addRuleForm(RuleName ruleName) {
         return "ruleName/add";
     }
 

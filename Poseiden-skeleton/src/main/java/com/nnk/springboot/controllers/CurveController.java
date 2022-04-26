@@ -31,7 +31,7 @@ public class CurveController {
     }
 
     @GetMapping("/curvePoint/add")
-    public String addCurveForm(CurvePoint bid) {
+    public String addCurveForm(CurvePoint curvePoint) {
         return "curvePoint/add";
     }
 

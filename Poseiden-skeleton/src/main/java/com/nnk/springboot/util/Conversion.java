@@ -4,10 +4,12 @@ import com.nnk.springboot.domain.BidList;
 import com.nnk.springboot.domain.CurvePoint;
 import com.nnk.springboot.domain.Rating;
 import com.nnk.springboot.domain.RuleName;
+import com.nnk.springboot.domain.Trade;
 import com.nnk.springboot.dto.BidListDto;
 import com.nnk.springboot.dto.CurvePointDto;
 import com.nnk.springboot.dto.RatingDto;
 import com.nnk.springboot.dto.RuleNameDto;
+import com.nnk.springboot.dto.TradeDto;
 
 import org.springframework.stereotype.Component;
 
@@ -52,5 +54,14 @@ public class Conversion implements IConversion {
         ruleNameDto.setSqlStr(ruleName.getSqlStr());
         ruleNameDto.setSqlPart(ruleName.getSqlPart());
         return ruleNameDto;
+    }
+
+    public TradeDto tradeToTradeDto(final Trade trade) {
+        TradeDto tradeDto = new TradeDto();
+        tradeDto.setId(trade.getId());
+        tradeDto.setAccount(trade.getAccount());
+        tradeDto.setType(trade.getType());
+        tradeDto.setBuyQuantity(trade.getBuyQuantity());
+        return tradeDto;
     }
 }

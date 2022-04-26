@@ -45,6 +45,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 //.loginPage("/login").permitAll()
                 .defaultSuccessUrl("/bidList/list", true);
+                //.and()
+               // .oauth2Login();
+
 
                 //.and()
                 //.httpBasic();
