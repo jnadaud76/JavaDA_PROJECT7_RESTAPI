@@ -1,6 +1,6 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.domain.Rating;
+import com.nnk.springboot.dto.RatingDto;
 import com.nnk.springboot.service.IRatingService;
 
 import org.springframework.stereotype.Controller;
@@ -31,14 +31,14 @@ public class RatingController {
     }
 
     @GetMapping("/rating/add")
-    public String addRatingForm(Rating rating) {
+    public String addRatingForm(@ModelAttribute("rating") RatingDto ratingDto) {
         return "rating/add";
     }
 
     @PostMapping("/rating/validate")
-    public String validate(@Valid @ModelAttribute("rating") Rating rating, BindingResult result, Model model) {
+    public String validate(@Valid @ModelAttribute("rating") RatingDto ratingDto, BindingResult result, Model model) {
             if (!result.hasErrors()) {
-            ratingService.addRating(rating);
+            ratingService.addRating(ratingDto);
             model.addAttribute("ratings", ratingService.getRatings());
             return "redirect:/rating/list";
         }
@@ -53,17 +53,17 @@ public class RatingController {
     }
 
     @PostMapping("/rating/update/{id}")
-    public String updateRating(@PathVariable("id") Integer id, @Valid @ModelAttribute("rating") Rating rating,
+    public String updateRating(@PathVariable("id") Integer id, @Valid @ModelAttribute("rating") RatingDto ratingDto,
                              BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "rating/update";
         }
-        rating.setId(rating.getId());
-        rating.setMoodysRating(rating.getMoodysRating());
-        rating.setSandPRating(rating.getSandPRating());
-        rating.setFitchRating(rating.getFitchRating());
-        rating.setOrderNumber(rating.getOrderNumber());
-        ratingService.addRating(rating);
+        ratingDto.setId(ratingDto.getId());
+        ratingDto.setMoodysRating(ratingDto.getMoodysRating());
+        ratingDto.setSandPRating(ratingDto.getSandPRating());
+        ratingDto.setFitchRating(ratingDto.getFitchRating());
+        ratingDto.setOrderNumber(ratingDto.getOrderNumber());
+        ratingService.addRating(ratingDto);
         model.addAttribute("ratings", ratingService.getRatings());
         return "redirect:/rating/list";
     }

@@ -29,8 +29,8 @@ public class CurveService implements ICurveService{
                 .collect(Collectors.toList());
     }
 
-    public void addCurvePoint(CurvePoint curvePoint){
-        curvePointRepository.save(curvePoint);
+    public void addCurvePoint(CurvePointDto curvePointDto){
+        curvePointRepository.save(conversion.curvePointDtoToCurvePoint(curvePointDto));
 
     }
 

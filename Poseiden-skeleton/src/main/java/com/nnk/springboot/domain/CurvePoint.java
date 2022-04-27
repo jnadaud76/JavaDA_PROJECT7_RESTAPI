@@ -1,25 +1,33 @@
 package com.nnk.springboot.domain;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 import java.time.LocalDateTime;
 
 
 @Entity
+@DynamicUpdate
 @Table(name = "curvepoint")
 public class CurvePoint {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="Id")
     private Integer id;
-    @NotNull(message = "must not be null")
+    @NotNull(message = "Must not be null")
+    @Positive(message = "Must be at least 1")
     @Column(name= "Curve_Id")
     private Integer curveId;
     @Column(name= "as_Of_Date")
     private LocalDateTime asOfDate;
+    @DecimalMin(value="0.1", message="Must be greater than or equal to 0.1 ")
     @Column(name="term")
     private Double term;
+    @DecimalMin(value="0.1", message="Must be greater than or equal to 0.1 ")
     @Column(name="value")
     private Double value;
     @Column(name= "creation_Date")

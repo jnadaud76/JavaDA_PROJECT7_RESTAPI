@@ -1,13 +1,16 @@
 package com.nnk.springboot.dto;
 
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
 public class TradeDto {
 
     private Integer id;
-
+    @Size(max=30)
     private String account;
-
+    @Size(max=30)
     private String type;
-
+    @Positive(message = "Must be at least 1")
     private Double buyQuantity;
 
     public Integer getId() {

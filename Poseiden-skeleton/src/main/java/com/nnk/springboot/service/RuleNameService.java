@@ -30,8 +30,8 @@ public class RuleNameService implements IRuleNameService {
                 .collect(Collectors.toList());
     }
 
-    public void addRuleName(RuleName ruleName){
-        ruleNameRepository.save(ruleName);
+    public void addRuleName(RuleNameDto ruleNameDto){
+        ruleNameRepository.save(conversion.ruleNameDtoToRuleName(ruleNameDto));
     }
 
     public RuleNameDto getRuleNameById(Integer id){

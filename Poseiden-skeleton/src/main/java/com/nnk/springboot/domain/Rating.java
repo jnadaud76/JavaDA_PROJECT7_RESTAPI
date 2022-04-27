@@ -1,25 +1,29 @@
 package com.nnk.springboot.domain;
 
-import org.hibernate.validator.constraints.Length;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 @Entity
+@DynamicUpdate
 @Table(name = "rating")
 public class Rating {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="Id")
     private Integer id;
-    @Length(max=125)
+    @Size(max=125)
     @Column(name= "moodys_Rating")
     private String moodysRating;
-    @Length(max=125)
+    @Size(max=125)
     @Column(name="sandPRating")
     private String sandPRating;
-    @Length(max=125)
+    @Size(max=125)
     @Column(name= "fitch_Rating")
     private String fitchRating;
+    @Positive(message = "Must be at least 1")
     @Column(name= "order_Number")
     private Integer orderNumber;
 

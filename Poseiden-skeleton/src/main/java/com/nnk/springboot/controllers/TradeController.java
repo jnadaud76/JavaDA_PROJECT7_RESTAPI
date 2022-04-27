@@ -1,6 +1,6 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.domain.Trade;
+import com.nnk.springboot.dto.TradeDto;
 import com.nnk.springboot.service.ITradeService;
 
 import org.springframework.stereotype.Controller;
@@ -31,14 +31,14 @@ public class TradeController {
     }
 
     @GetMapping("/trade/add")
-    public String addTrade(Trade trade) {
+    public String addTrade(@ModelAttribute("trade") TradeDto tradeDto) {
         return "trade/add";
     }
 
     @PostMapping("/trade/validate")
-    public String validate(@Valid @ModelAttribute("trade") Trade trade, BindingResult result, Model model) {
+    public String validate(@Valid @ModelAttribute("trade") TradeDto tradeDto, BindingResult result, Model model) {
         if (!result.hasErrors()) {
-            tradeService.addTrade(trade);
+            tradeService.addTrade(tradeDto);
             model.addAttribute("trades", tradeService.getTrades());
             return "redirect:/trade/list";
         }
@@ -52,16 +52,16 @@ public class TradeController {
     }
 
     @PostMapping("/trade/update/{id}")
-    public String updateTrade(@PathVariable("id") Integer id, @Valid @ModelAttribute("trade") Trade trade,
+    public String updateTrade(@PathVariable("id") Integer id, @Valid @ModelAttribute("trade") TradeDto tradeDto,
                              BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "trade/update";
         }
-        trade.setId(trade.getId());
-        trade.setAccount(trade.getAccount());
-        trade.setType(trade.getType());
-        trade.setBuyQuantity(trade.getBuyQuantity());
-        tradeService.addTrade(trade);
+        tradeDto.setId(tradeDto.getId());
+        tradeDto.setAccount(tradeDto.getAccount());
+        tradeDto.setType(tradeDto.getType());
+        tradeDto.setBuyQuantity(tradeDto.getBuyQuantity());
+        tradeService.addTrade(tradeDto);
         model.addAttribute("trades", tradeService.getTrades());
         return "redirect:/trade/list";
     }

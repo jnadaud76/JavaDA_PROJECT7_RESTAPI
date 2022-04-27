@@ -30,8 +30,8 @@ public class BidListService implements IBidListService{
 
    }
 
-   public void addBidList(BidList bidList) {
-     bidListRepository.save(bidList);
+   public void addBidList(BidListDto bidListDto) {
+     bidListRepository.save(conversion.bidListDtoToBidList(bidListDto));
 
    }
 

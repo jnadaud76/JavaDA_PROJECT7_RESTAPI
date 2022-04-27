@@ -1,60 +1,67 @@
 package com.nnk.springboot.domain;
 
-import org.hibernate.validator.constraints.Length;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
+
 import java.sql.Timestamp;
 
 
 @Entity
+@DynamicUpdate
 @Table(name = "trade")
 public class Trade {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Trade_Id")
     private Integer id;
-    @Length(max=30)
+    @Size(max=30)
     private String account;
-    @Length(max=30)
+    @Size(max=30)
     private String type;
+    @Positive(message = "Must be at least 1")
     @Column(name="buy_Quantity")
     private Double buyQuantity;
+    @Positive(message = "Must be at least 1")
     @Column(name="sell_Quantity")
     private Double sellQuantity;
+    @Positive(message = "Must be at least 1")
     @Column(name="sell_Price")
     private Double sellPrice;
-    @Length(max=125)
+    @Size(max=125)
     private String benchmark;
     @Column(name="trade_Date")
     private Timestamp tradeDate;
-    @Length(max=125)
+    @Size(max=125)
     private String security;
-    @Length(max=10)
+    @Size(max=10)
     private String status;
-    @Length(max=125)
+    @Size(max=125)
     private String trader;
-    @Length(max=125)
+    @Size(max=125)
     private String book;
-    @Length(max=125)
+    @Size(max=125)
     @Column(name="creation_Name")
     private String creationName;
     @Column(name="creation_Date")
     private Timestamp creationDate;
-    @Length(max=125)
+    @Size(max=125)
     @Column(name="revision_Name")
     private String revisionName;
     @Column(name="revision_Date")
     private Timestamp revisionDate;
-    @Length(max=125)
+    @Size(max=125)
     @Column(name="deal_Name")
     private String dealName;
-    @Length(max=125)
+    @Size(max=125)
     @Column(name="deal_Type")
     private String dealType;
-    @Length(max=125)
+    @Size(max=125)
     @Column(name="source_List_Id")
     private String sourceListId;
-    @Length(max=125)
+    @Size(max=125)
     private String side;
 
     public Trade() {

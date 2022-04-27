@@ -1,29 +1,30 @@
 package com.nnk.springboot.domain;
 
-import org.hibernate.validator.constraints.Length;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
+@DynamicUpdate
 @Table(name = "users")
 public class User {
+
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="Id")
     private Integer id;
-    @Length(max=125)
+    @Size(max=125)
+    @Column(unique=true)
     @NotBlank(message = "Username is mandatory")
     private String username;
-    @Pattern(regexp="(?=.{8,20}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\\W).*$")
-    @Length(min=8,max=20)
     @NotBlank(message = "Password is mandatory")
     private String password;
-    @Length(max=125)
+    @Size(max=125)
     @NotBlank(message = "FullName is mandatory")
     private String fullname;
-    @Length(max=125)
+    @Size(max=125)
     @NotBlank(message = "Role is mandatory")
     private String role;
 
@@ -66,4 +67,5 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
 }

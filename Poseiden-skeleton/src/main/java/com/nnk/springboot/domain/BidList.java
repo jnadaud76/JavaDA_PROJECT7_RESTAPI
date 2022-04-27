@@ -1,14 +1,20 @@
 package com.nnk.springboot.domain;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+
 import javax.validation.constraints.NotBlank;
+
+import javax.validation.constraints.Size;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
+@DynamicUpdate
 @Table(name = "bidlist")
 public class BidList {
     @Id
@@ -19,50 +25,52 @@ public class BidList {
     @Length(max=30)
     private String account;
     @NotBlank(message = "Type is mandatory")
-    @Length(max=30)
+    @Size(max=30)
     private String type;
+    @DecimalMin(value="0.1", message="Must be greater than or equal to 0.1 ")
     @Column(name= "bid_Quantity")
     private Double bidQuantity;
+    @DecimalMin(value="0.1", message="Must be greater than or equal to 0.1 ")
     @Column(name= "ask_Quantity")
     private Double askQuantity;
-
+    @DecimalMin(value="0.1", message="Must be greater than or equal to 0.1 ")
     private Double bid;
-
+    @DecimalMin(value="0.1", message="Must be greater than or equal to 0.1 ")
     private Double ask;
-    @Length(max=125)
+    @Size(max=125)
     private String benchmark;
     @Column(name= "bid_List_Date")
     private LocalDateTime bidListDate;
-    @Length(max=125)
+    @Size(max=125)
     private String commentary;
-    @Length(max=125)
+    @Size(max=125)
     private String security;
-    @Length(max=10)
+    @Size(max=10)
     private String status;
-    @Length(max=125)
+    @Size(max=125)
     private String trader;
-    @Length(max=125)
+    @Size(max=125)
     private String book;
-    @Length(max=125)
+    @Size(max=125)
     @Column(name= "creation_Name")
     private String creationName;
     @Column(name= "creation_Date")
     private Timestamp creationDate;
-    @Length(max=125)
+    @Size(max=125)
     @Column(name= "revision_Name")
     private String revisionName;
     @Column(name= "revision_Date")
     private LocalDateTime revisionDate;
-    @Length(max=125)
+    @Size(max=125)
     @Column(name= "deal_Name")
     private String dealName;
-    @Length(max=125)
+    @Size(max=125)
     @Column(name= "deal_Type")
     private String dealType;
-    @Length(max=125)
+    @Size(max=125)
     @Column(name= "source_List_Id")
     private String sourceListId;
-    @Length(max=125)
+    @Size(max=125)
     private String side;
 
     public BidList() {

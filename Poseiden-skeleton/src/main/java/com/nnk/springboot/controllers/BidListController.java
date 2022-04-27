@@ -1,6 +1,6 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.domain.BidList;
+import com.nnk.springboot.dto.BidListDto;
 import com.nnk.springboot.service.IBidListService;
 
 import org.springframework.stereotype.Controller;
@@ -33,14 +33,14 @@ public class BidListController {
     }
 
     @GetMapping("/bidList/add")
-    public String addBidForm(BidList bid) {
+    public String addBidForm( @ModelAttribute("bidList") BidListDto bidListDto) {
         return "bidList/add";
     }
 
     @PostMapping("/bidList/validate")
-    public String validate(@Valid @ModelAttribute("bidList") BidList bid, BindingResult result, Model model) {
+    public String validate(@Valid @ModelAttribute("bidList") BidListDto bidListDto, BindingResult result, Model model) {
         if (!result.hasErrors()) {
-        bidListService.addBidList(bid);
+        bidListService.addBidList(bidListDto);
         model.addAttribute("bidLists", bidListService.getBidLists());
         return "redirect:/bidList/list";
         }
@@ -54,17 +54,17 @@ public class BidListController {
     }
 
     @PostMapping("/bidList/update/{id}")
-    public String updateBid(@PathVariable("id") Integer id, @Valid  @ModelAttribute("bidList") BidList bidList,
+    public String updateBid(@PathVariable("id") Integer id, @Valid  @ModelAttribute("bidList") BidListDto bidListDto,
                              BindingResult result, Model model) {
          if (result.hasErrors()) {
             return "bidList/update";
 
         }
-        bidList.setId(id);
-        bidList.setAccount(bidList.getAccount());
-        bidList.setType(bidList.getType());
-        bidList.setBidQuantity(bidList.getBidQuantity());
-        bidListService.addBidList(bidList);
+        bidListDto.setId(id);
+        bidListDto.setAccount(bidListDto.getAccount());
+        bidListDto.setType(bidListDto.getType());
+        bidListDto.setBidQuantity(bidListDto.getBidQuantity());
+        bidListService.addBidList(bidListDto);
         model.addAttribute("bidLists", bidListService.getBidLists());
         return "redirect:/bidList/list";
     }

@@ -1,6 +1,6 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.domain.RuleName;
+import com.nnk.springboot.dto.RuleNameDto;
 import com.nnk.springboot.service.IRuleNameService;
 
 import org.springframework.stereotype.Controller;
@@ -30,14 +30,14 @@ public class RuleNameController {
     }
 
     @GetMapping("/ruleName/add")
-    public String addRuleForm(RuleName ruleName) {
+    public String addRuleForm(@ModelAttribute("ruleName") RuleNameDto ruleNameDto) {
         return "ruleName/add";
     }
 
     @PostMapping("/ruleName/validate")
-    public String validate(@Valid @ModelAttribute("ruleName") RuleName ruleName, BindingResult result, Model model) {
+    public String validate(@Valid @ModelAttribute("ruleName") RuleNameDto ruleNameDto, BindingResult result, Model model) {
         if (!result.hasErrors()) {
-            ruleNameService.addRuleName(ruleName);
+            ruleNameService.addRuleName(ruleNameDto);
             model.addAttribute("ruleNames", ruleNameService.getRuleNames());
             return "redirect:/ruleName/list";
         }
@@ -51,19 +51,19 @@ public class RuleNameController {
     }
 
     @PostMapping("/ruleName/update/{id}")
-    public String updateRuleName(@PathVariable("id") Integer id, @Valid @ModelAttribute("ruleName") RuleName ruleName,
+    public String updateRuleName(@PathVariable("id") Integer id, @Valid @ModelAttribute("ruleName") RuleNameDto ruleNameDto,
                                  BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "ruleName/update";
         }
-        ruleName.setId(ruleName.getId());
-        ruleName.setName(ruleName.getName());
-        ruleName.setDescription(ruleName.getDescription());
-        ruleName.setJson(ruleName.getJson());
-        ruleName.setTemplate(ruleName.getTemplate());
-        ruleName.setSqlPart(ruleName.getSqlPart());
-        ruleName.setSqlStr(ruleName.getSqlStr());
-        ruleNameService.addRuleName(ruleName);
+        ruleNameDto.setId(ruleNameDto.getId());
+        ruleNameDto.setName(ruleNameDto.getName());
+        ruleNameDto.setDescription(ruleNameDto.getDescription());
+        ruleNameDto.setJson(ruleNameDto.getJson());
+        ruleNameDto.setTemplate(ruleNameDto.getTemplate());
+        ruleNameDto.setSqlPart(ruleNameDto.getSqlPart());
+        ruleNameDto.setSqlStr(ruleNameDto.getSqlStr());
+        ruleNameService.addRuleName(ruleNameDto);
         model.addAttribute("ruleNames", ruleNameService.getRuleNames());
         return "redirect:/ruleName/list";
     }

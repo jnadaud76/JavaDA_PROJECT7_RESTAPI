@@ -1,29 +1,31 @@
 package com.nnk.springboot.domain;
 
-import org.hibernate.validator.constraints.Length;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
+@DynamicUpdate
 @Table(name = "rulename")
 public class RuleName {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     @Column(name="Id")
     private Integer id;
-    @Length(max=125)
+    @Size(max=125)
     private String name;
-    @Length(max=125)
+    @Size(max=125)
     private String description;
-    @Length(max=125)
+    @Size(max=125)
     private String json;
-    @Length(max=512)
+    @Size(max=512)
     private String template;
-    @Length(max=125)
+    @Size(max=125)
     @Column(name= "sql_Str")
     private String sqlStr;
     @Column(name= "sql_Part")
-    @Length(max=125)
+    @Size(max=125)
     private String sqlPart;
 
     public RuleName() {

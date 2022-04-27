@@ -29,8 +29,8 @@ public class TradeService implements ITradeService {
                 .collect(Collectors.toList());
     }
 
-    public void addTrade(Trade trade){
-        tradeRepository.save(trade);
+    public void addTrade(TradeDto tradeDto){
+        tradeRepository.save(conversion.tradeDtoToTrade(tradeDto));
 
     }
 

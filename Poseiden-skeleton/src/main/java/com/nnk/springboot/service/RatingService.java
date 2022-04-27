@@ -29,8 +29,8 @@ public class RatingService implements IRatingService {
                 .collect(Collectors.toList());
     }
 
-    public void addRating(Rating rating){
-        ratingRepository.save(rating);
+    public void addRating(RatingDto ratingDto){
+        ratingRepository.save(conversion.ratingDtoToRating(ratingDto));
 
     }
 

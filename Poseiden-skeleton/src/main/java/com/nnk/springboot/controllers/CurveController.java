@@ -1,6 +1,6 @@
 package com.nnk.springboot.controllers;
 
-import com.nnk.springboot.domain.CurvePoint;
+import com.nnk.springboot.dto.CurvePointDto;
 import com.nnk.springboot.service.ICurveService;
 
 import org.springframework.stereotype.Controller;
@@ -31,14 +31,14 @@ public class CurveController {
     }
 
     @GetMapping("/curvePoint/add")
-    public String addCurveForm(CurvePoint curvePoint) {
+    public String addCurveForm(@ModelAttribute("curvePoint") CurvePointDto curvePointDto) {
         return "curvePoint/add";
     }
 
     @PostMapping("/curvePoint/validate")
-    public String validate(@Valid @ModelAttribute("curvePoint") CurvePoint curvePoint, BindingResult result, Model model) {
+    public String validate(@Valid @ModelAttribute("curvePoint") CurvePointDto curvePointDto, BindingResult result, Model model) {
         if (!result.hasErrors()) {
-            curveService.addCurvePoint(curvePoint);
+            curveService.addCurvePoint(curvePointDto);
             model.addAttribute("curvePoints", curveService.getCurvePoints());
             return "redirect:/curvePoint/list";
         }
@@ -52,16 +52,16 @@ public class CurveController {
     }
 
     @PostMapping("/curvePoint/update/{id}")
-    public String updateCurve(@PathVariable("id") Integer id, @Valid  @ModelAttribute("curvePoint") CurvePoint curvePoint,
+    public String updateCurve(@PathVariable("id") Integer id, @Valid @ModelAttribute("curvePoint") CurvePointDto curvePointDto,
                              BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "curvePoint/update";
         }
-        curvePoint.setId(id);
-        curvePoint.setCurveId(curvePoint.getCurveId());
-        curvePoint.setTerm(curvePoint.getTerm());
-        curvePoint.setValue(curvePoint.getValue());
-        curveService.addCurvePoint(curvePoint);
+        curvePointDto.setId(id);
+        curvePointDto.setCurveId(curvePointDto.getCurveId());
+        curvePointDto.setTerm(curvePointDto.getTerm());
+        curvePointDto.setValue(curvePointDto.getValue());
+        curveService.addCurvePoint(curvePointDto);
         model.addAttribute("curvePoints", curveService.getCurvePoints());
         return "redirect:/curvePoint/list";
     }
