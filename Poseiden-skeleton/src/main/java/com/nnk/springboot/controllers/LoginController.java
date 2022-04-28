@@ -9,18 +9,25 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-@RequestMapping("app")
+//@RequestMapping("app")
 public class LoginController {
 
-    @Autowired
-    private UserRepository userRepository;
+   /* @Autowired
+    private UserRepository userRepository;*/
 
-    @GetMapping("/login")
+
+
+    @GetMapping ("/login")
+    public String login() {
+        return "login";
+    }
+
+   /* @GetMapping("/login")
     public ModelAndView login() {
         ModelAndView mav = new ModelAndView();
         mav.setViewName("login");
         return mav;
-    }
+    }*/
 
    /* @GetMapping("secure/article-details")
     public ModelAndView getAllUserArticles() {
@@ -30,14 +37,14 @@ public class LoginController {
         return mav;
     }*/
 
-    @GetMapping("error")
+  /* @GetMapping("error")
     public ModelAndView error() {
-        ModelAndView mav = new ModelAndView();
-        String errorMessage= "You are not authorized for the requested data.";
-        mav.addObject("errorMsg", errorMessage);
-        mav.setViewName("403");
-        return mav;
-    }
+       ModelAndView mav = new ModelAndView();
+       String errorMessage = "You are not authorized for the requested data.";
+       mav.addObject("errorMsg", errorMessage);
+       mav.setViewName("403");
+       return mav;
+   }*/
 
    /* @RolesAllowed("USER")
     @RequestMapping("/**")
@@ -53,7 +60,7 @@ public class LoginController {
         return "redirect:/bidList/list";
     }*/
 
-   /* @RequestMapping("/*")
+   /*@RequestMapping("/*")
     public String getGithub()
     {
         return "Welcome Github user!";

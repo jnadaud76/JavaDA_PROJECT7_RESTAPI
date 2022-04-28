@@ -39,18 +39,29 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers( "/static.css/**", "/").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/user/*").hasAuthority("ADMIN")
-                // .antMatchers("/app/user").hasRole("USER")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                //.loginPage("/login").permitAll()
-                .defaultSuccessUrl("/bidList/list", true);
-                //.and()
-               // .oauth2Login();
+                .loginPage("/login").permitAll()
+                .defaultSuccessUrl("/bidList/list", true)
+                //.failureUrl("/login?error")
+                //.failureForwardUrl("/403")
+                .and()
+                .oauth2Login()
+                .loginPage("/login").permitAll()
+                .defaultSuccessUrl("/bidList/list", true)
+                .and()
+                .logout()
+                .logoutUrl("/app-logout")
+                .logoutSuccessUrl("/")
+                .clearAuthentication(true)
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .permitAll()
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/403");
 
-
-                //.and()
-                //.httpBasic();
 
 
     }

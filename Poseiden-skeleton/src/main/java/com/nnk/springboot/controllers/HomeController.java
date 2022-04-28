@@ -7,17 +7,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController
 {
-	@RequestMapping("/")
+
+    @RequestMapping("/")
+    public String home(Model model){
+        return "redirect:/login";
+    }
+
+	/*@RequestMapping("/")
 	public String home(Model model)
 	{
-		return "home";
-	}
+		return "login";
+	}*/
 
-	@RequestMapping("/admin/home")
+	/*@RequestMapping("/admin/home")
 	public String adminHome(Model model)
 	{
 		return "redirect:/bidList/list";
-	}
+	}*/
 
 
 }

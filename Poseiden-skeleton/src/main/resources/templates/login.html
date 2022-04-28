@@ -33,7 +33,7 @@
 
 <!-- login form -->
 <div>
-    <form th:action="@{/}" method="post">
+    <form th:action="@{/login}" method="post">
         <h2 >Please sign in</h2>
         <label >User Name</label>
         <input type="text" name="username" th:required="required" th:autofocus="autofocus"/>
@@ -45,6 +45,10 @@
 
         <input type="submit" value="Login"/>
     </form>
+    <div>
+        <a th:href="@{/oauth2/authorization/github}">Git Hub Login</a>
+    </div>
+
 </div>
 </body>
 </html>
