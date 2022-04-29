@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 @Table(name = "trade")
 public class Trade {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Trade_Id")
     private Integer id;
     @Size(max=30)

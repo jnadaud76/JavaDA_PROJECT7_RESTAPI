@@ -10,8 +10,12 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.transaction.Transactional;
+
 @Service
+@Transactional
 public class BidListService implements IBidListService{
+
 
     private final BidListRepository bidListRepository;
 
@@ -37,7 +41,8 @@ public class BidListService implements IBidListService{
 
    public BidListDto getBidById(Integer id) {
        if(bidListRepository.existsById(id)){
-           return conversion.bidListToBidListDto(bidListRepository.getById(id));
+           BidList bidList = bidListRepository.getById(id);
+           return conversion.bidListToBidListDto(bidList);
 
        } else {
            throw new IllegalArgumentException("Invalid bid Id:" + id);

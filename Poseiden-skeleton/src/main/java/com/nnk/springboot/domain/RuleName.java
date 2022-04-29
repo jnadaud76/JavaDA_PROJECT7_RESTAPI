@@ -10,7 +10,7 @@ import javax.validation.constraints.Size;
 @Table(name = "rulename")
 public class RuleName {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="Id")
     private Integer id;
     @Size(max=125)

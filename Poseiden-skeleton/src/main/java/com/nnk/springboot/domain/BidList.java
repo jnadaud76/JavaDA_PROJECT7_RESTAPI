@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 @Table(name = "bidlist")
 public class BidList {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "Bid_List_Id")
     private Integer id;
     @NotBlank(message = "Account is mandatory")
@@ -73,15 +73,6 @@ public class BidList {
     @Size(max=125)
     private String side;
 
-    public BidList() {
-    }
-
-    public BidList(String account, String type, Double bidQuantity) {
-     this.account=account;
-     this.type=type;
-     this.bidQuantity=bidQuantity;
-
-    }
     public Integer getId() {
         return id;
     }

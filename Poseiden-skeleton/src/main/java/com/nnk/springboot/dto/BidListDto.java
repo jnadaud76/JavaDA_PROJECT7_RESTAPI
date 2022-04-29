@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 
 public class BidListDto {
 
-    private Integer id;
+     private Integer id;
     @NotBlank(message = "Account is mandatory")
     @Size(max=30)
     private String account;
