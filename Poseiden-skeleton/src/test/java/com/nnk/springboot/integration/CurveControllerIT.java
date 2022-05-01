@@ -15,100 +15,99 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
-
 import org.springframework.web.util.NestedServletException;
-
 
 @ActiveProfiles("test")
 @SpringBootTest
 @AutoConfigureMockMvc
 @WithMockUser
-class BidListControllerIT {
+class CurveControllerIT {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
     void TestHome() throws Exception {
-        mockMvc.perform(get("/bidList/list"))
+        mockMvc.perform(get("/curvePoint/list"))
                 .andExpect(status().isOk())
-                .andExpect(model().attributeExists("bidLists"));
+                .andExpect(model().attributeExists("curvePoints"));
     }
 
     @Test
-    void TestAddBidForm() throws Exception {
-        mockMvc.perform(get("/bidList/add"))
+    void TestAddCurveForm() throws Exception {
+        mockMvc.perform(get("/curvePoint/add"))
                 .andExpect(status().isOk());
     }
 
     @Test
     void TestValidate() throws Exception {
-        mockMvc.perform(post("/bidList/validate")
-                        .param("account", "cinq")
-                        .param("type", "cinq")
-                        .param("bidQuantity", "600.0"))
+        mockMvc.perform(post("/curvePoint/validate")
+                        .param("curveId", "5")
+                        .param("term", "90.0")
+                        .param("value", "100.0"))
                 .andExpect(status().isFound())
-                .andExpect(redirectedUrl("/bidList/list"));
+                .andExpect(redirectedUrl("/curvePoint/list"));
 
     }
 
     @Test
     void TestValidateWithBadArguments() throws Exception {
 
-        mockMvc.perform(post("/bidList/validate")
-                        .param("account", "")
-                        .param("type", "")
-                        .param("bidQuantity", "300.0"))
+        mockMvc.perform(post("/curvePoint/validate")
+                        .param("curveId", "")
+                        .param("term", "")
+                        .param("value", ""))
                 .andExpect(status().isOk())
-                .andExpect(view().name("bidList/add"));
+                .andExpect(view().name("curvePoint/add"));
 
     }
 
     @Test
     void TestShowUpdateForm() throws Exception {
-        mockMvc.perform(get("/bidList/update/1"))
+        mockMvc.perform(get("/curvePoint/update/1"))
                 .andExpect(status().isOk())
-                .andExpect(model().attributeExists("bidList"))
-                .andExpect(view().name("bidList/update"));
+                .andExpect(model().attributeExists("curvePoint"))
+                .andExpect(view().name("curvePoint/update"));
     }
 
     @Test
     void TestShowUpdateFormWithBadId() throws Exception {
         assertThrows(NestedServletException.class,
-                () -> mockMvc.perform(get("/bidList/update/20")));
+                () -> mockMvc.perform(get("/curvePoint/update/20")));
 
     }
 
     @Test
-    void TestUpdateBid() throws Exception {
-        mockMvc.perform(post("/bidList/update/2")
-                        .param("account", "quatre")
-                        .param("type", "quatre")
-                        .param("bidQuantity", "250.0"))
+    void TestUpdateCurve() throws Exception {
+        mockMvc.perform(post("/curvePoint/update/2")
+                        .param("curveId", "4")
+                        .param("term", "110.0")
+                        .param("value", "110.0"))
                 .andExpect(status().isFound())
-                .andExpect(redirectedUrl("/bidList/list"));
+                .andExpect(redirectedUrl("/curvePoint/list"));
     }
 
     @Test
-    void TestUpdateBidWithBadArguments() throws Exception {
-        mockMvc.perform(post("/bidList/update/1")
-                        .param("account", "")
-                        .param("type", "")
-                        .param("bidQuantity", "300.0"))
+    void TestUpdateCurveWithBadArguments() throws Exception {
+        mockMvc.perform(post("/curvePoint/update/1")
+                        .param("curveId", "")
+                        .param("term", "")
+                        .param("value", ""))
                 .andExpect(status().isOk())
-                .andExpect(view().name("bidList/update"));
+                .andExpect(view().name("curvePoint/update"));
     }
 
     @Test
-    void TestDeleteBid() throws Exception {
-        mockMvc.perform(get("/bidList/delete/3"))
+    void TestDeleteCurve() throws Exception {
+        mockMvc.perform(get("/curvePoint/delete/3"))
                 .andExpect(status().isFound())
-                .andExpect(redirectedUrl("/bidList/list"));
+                .andExpect(redirectedUrl("/curvePoint/list"));
     }
 
     @Test
-    void TestDeleteBidWithBadId() throws Exception {
+    void TestDeleteCurveWithBadId() throws Exception {
         assertThrows(NestedServletException.class,
-                () -> mockMvc.perform(get("/bidList/delete/20")));
+                () -> mockMvc.perform(get("/curvePoint/delete/20")));
     }
+
 }
