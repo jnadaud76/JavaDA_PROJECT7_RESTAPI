@@ -8,9 +8,9 @@ public interface IRuleNameService {
 
     List<RuleNameDto> getRuleNames();
 
-    void addRuleName(RuleNameDto ruleNameDto);
+    Boolean addRuleName(RuleNameDto ruleNameDto);
 
     RuleNameDto getRuleNameById(Integer id);
 
-    void deleteRuleNameById(Integer id);
+    Boolean deleteRuleNameById(Integer id);
 }

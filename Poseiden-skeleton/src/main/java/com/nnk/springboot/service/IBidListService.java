@@ -8,9 +8,9 @@ public interface IBidListService {
 
     List<BidListDto> getBidLists();
 
-    void addBidList(BidListDto bidListDto);
+    Boolean addBidList(BidListDto bidListDto);
 
     BidListDto getBidById(Integer id);
 
-    void deleteBidById(Integer id);
+    Boolean deleteBidById(Integer id);
 }

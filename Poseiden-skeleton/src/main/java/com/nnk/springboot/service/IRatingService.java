@@ -8,9 +8,9 @@ public interface IRatingService {
 
     List<RatingDto> getRatings();
 
-    void addRating(RatingDto ratingDto);
+    Boolean addRating(RatingDto ratingDto);
 
     RatingDto getRatingById(Integer id);
 
-    void deleteRatingById(Integer id);
+    Boolean deleteRatingById(Integer id);
 }

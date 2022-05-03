@@ -32,8 +32,9 @@ public class CurveService implements ICurveService{
                 .collect(Collectors.toList());
     }
 
-    public void addCurvePoint(CurvePointDto curvePointDto){
+    public Boolean addCurvePoint(CurvePointDto curvePointDto){
         curvePointRepository.save(conversion.curvePointDtoToCurvePoint(curvePointDto));
+        return true;
 
     }
 
@@ -46,12 +47,12 @@ public class CurveService implements ICurveService{
 
     }
 
-    public void deleteCurvePointById(Integer id){
+    public Boolean deleteCurvePointById(Integer id){
         if(curvePointRepository.existsById(id)){
             curvePointRepository.delete(curvePointRepository.getById(id));
         } else {
             throw new IllegalArgumentException("Invalid curvePoint Id:" + id);
         }
-
+    return true;
     }
 }

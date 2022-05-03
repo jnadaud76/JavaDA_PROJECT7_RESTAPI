@@ -34,9 +34,9 @@ public class BidListService implements IBidListService{
 
    }
 
-   public void addBidList(BidListDto bidListDto) {
-     bidListRepository.save(conversion.bidListDtoToBidList(bidListDto));
-
+   public Boolean addBidList(BidListDto bidListDto) {
+    bidListRepository.save(conversion.bidListDtoToBidList(bidListDto));
+    return true;
    }
 
    public BidListDto getBidById(Integer id) {
@@ -50,12 +50,15 @@ public class BidListService implements IBidListService{
 
    }
 
-   public void deleteBidById(Integer id) {
+   public Boolean deleteBidById(Integer id) {
+
        if(bidListRepository.existsById(id)){
            bidListRepository.delete(bidListRepository.getById(id));
        } else {
            throw new IllegalArgumentException("Invalid bid Id:" + id);
+
        }
+       return true;
    }
 
 

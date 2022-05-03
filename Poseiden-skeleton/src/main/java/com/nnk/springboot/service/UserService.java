@@ -33,8 +33,9 @@ public class UserService implements IUserService {
                 .collect(Collectors.toList());
     }
 
-    public void addUser(UserDto userDto){
+    public Boolean addUser(UserDto userDto){
         userRepository.save(conversion.userDtoToUser(userDto));
+        return true;
         }
 
     public UserDto getUserById(Integer id){
@@ -46,12 +47,12 @@ public class UserService implements IUserService {
 
     }
 
-    public void deleteUserById(Integer id){
+    public Boolean deleteUserById(Integer id){
         if(userRepository.existsById(id)){
             userRepository.delete(userRepository.getById(id));
         } else {
             throw new IllegalArgumentException("Invalid user Id:" + id);
         }
-
+        return true;
     }
 }

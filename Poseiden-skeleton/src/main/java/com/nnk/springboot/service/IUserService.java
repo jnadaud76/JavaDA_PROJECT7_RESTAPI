@@ -8,11 +8,11 @@ public interface IUserService {
 
     List<UserDto> getUsers();
 
-    void addUser(UserDto userDto);
+    Boolean addUser(UserDto userDto);
 
     UserDto getUserById(Integer id);
 
-    void deleteUserById(Integer id);
+    Boolean deleteUserById(Integer id);
 
 
 }

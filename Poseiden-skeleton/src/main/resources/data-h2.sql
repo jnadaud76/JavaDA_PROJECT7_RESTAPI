@@ -1,5 +1,6 @@
-insert into users(fullname, username, password, role) values('Administrator', 'admin', '$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa', 'ADMIN');
-insert into users(fullname, username, password, role) values('User', 'user', '$2a$10$pBV8ILO/s/nao4wVnGLrh.sa/rnr5pDpbeC4E.KNzQWoy8obFZdaa', 'USER');
+insert into users(fullname, username, password, role) values('test', '$2a$10$JcnCUWVelU6urqqa6i02UOOYW2HGCDdKgMNJIX9K9cWAR9LuM7kAy', 'test', 'USER');
+insert into users(fullname, username, password, role) values('test2', '$2a$10$iNyzanFpPlQk6m0uQVPaF.Cd3I60mhBDaqBGvvrzScOakQusx9tde', 'test2', 'USER');
+insert into users(fullname, username, password, role) values('test3', '$2a$10$cMJTm9lGhIoJVRR6hTi0Xe..Nw3q6ASV6/jbii8XKUn0AQ.r1cxnW', 'test3', 'ADMIN');
 
 insert into bidlist(account, type, bid_Quantity) values('un', 'un', '200');
 insert into bidlist(account, type, bid_Quantity) values('deux', 'deux', '300');
@@ -16,3 +17,7 @@ insert into rating(moodys_Rating, sandPRating, fitch_Rating, order_Number) value
 insert into rulename(name, description,json, template, sql_Str, sql_Part) values('un', 'un', 'un', 'un', 'un', 'un');
 insert into rulename(name, description,json, template, sql_Str, sql_Part) values('deux', 'deux', 'deux', 'deux', 'deux', 'deux');
 insert into rulename(name, description,json, template, sql_Str, sql_Part) values('trois', 'trois', 'trois', 'trois', 'trois', 'trois');
+
+insert into trade(account, type, buy_Quantity) values('un', 'un', '10.0');
+insert into trade(account, type, buy_Quantity) values('deux', 'deux', '20.0');
+insert into trade(account, type, buy_Quantity) values('trois', 'trois', '30.0');

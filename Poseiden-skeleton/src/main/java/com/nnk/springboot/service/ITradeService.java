@@ -8,9 +8,9 @@ public interface ITradeService {
 
     List<TradeDto> getTrades();
 
-    void addTrade(TradeDto tradeDto);
+    Boolean addTrade(TradeDto tradeDto);
 
     TradeDto getTradeById(Integer id);
 
-    void deleteTradeById(Integer id);
+    Boolean deleteTradeById(Integer id);
 }
