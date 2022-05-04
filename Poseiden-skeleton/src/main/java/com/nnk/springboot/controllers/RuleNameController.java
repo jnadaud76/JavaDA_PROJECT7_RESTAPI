@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api("API for rulename CRUD operations.")
 @Controller
 public class RuleNameController {
 
@@ -28,19 +31,22 @@ public class RuleNameController {
         this.ruleNameService = ruleNameService;
     }
 
-    @RequestMapping("/ruleName/list")
+    @ApiOperation(value = "Retrieving all rulename.")
+    @GetMapping("/ruleName/list")
     public String home(Model model) {
         model.addAttribute("ruleNames", ruleNameService.getRuleNames());
         LOGGER.info("RuleNames successfully found - code : {}", HttpStatus.OK);
         return "ruleName/list";
     }
 
+    @ApiOperation(value = "Showing rulename creation form.")
     @GetMapping("/ruleName/add")
     public String addRuleForm(@ModelAttribute("ruleName") RuleNameDto ruleNameDto) {
         LOGGER.info("RuleNameForm successfully found - code : {}", HttpStatus.OK);
         return "ruleName/add";
     }
 
+    @ApiOperation(value = "Adding one rulename after validation.")
     @PostMapping("/ruleName/validate")
     public String validate(@Valid @ModelAttribute("ruleName") RuleNameDto ruleNameDto, BindingResult result, Model model) {
         if (!result.hasErrors()) {
@@ -53,6 +59,8 @@ public class RuleNameController {
         return "ruleName/add";
     }
 
+
+    @ApiOperation(value = "Showing rulename updating form.")
     @GetMapping("/ruleName/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         LOGGER.info("RuleName UpdateForm successfully found - code : {}", HttpStatus.OK);
@@ -60,6 +68,7 @@ public class RuleNameController {
         return "ruleName/update";
     }
 
+    @ApiOperation(value = "Updating one rulename after validation.")
     @PostMapping("/ruleName/update/{id}")
     public String updateRuleName(@PathVariable("id") Integer id, @Valid @ModelAttribute("ruleName") RuleNameDto ruleNameDto,
                                  BindingResult result, Model model) {
@@ -80,6 +89,7 @@ public class RuleNameController {
         return "redirect:/ruleName/list";
     }
 
+    @ApiOperation(value = "Deleting one rulename.")
     @GetMapping("/ruleName/delete/{id}")
     public String deleteRuleName(@PathVariable("id") Integer id, Model model) {
         ruleNameService.deleteRuleNameById(id);

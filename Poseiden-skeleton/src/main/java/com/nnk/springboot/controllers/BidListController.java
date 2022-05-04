@@ -17,7 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
+@Api("API for bidlist CRUD operations.")
 @Controller
 public class BidListController {
 
@@ -29,6 +32,7 @@ public class BidListController {
         this.bidListService = bidListService;
     }
 
+    @ApiOperation(value = "Retrieving all bidlist.")
     @GetMapping("/bidList/list")
     public String home(Model model)
     {
@@ -37,12 +41,14 @@ public class BidListController {
         return "bidList/list";
     }
 
+    @ApiOperation(value = "Showing bidlist creation form.")
     @GetMapping("/bidList/add")
     public String addBidForm( @ModelAttribute("bidList") BidListDto bidListDto) {
         LOGGER.info("BidListForm successfully found - code : {}", HttpStatus.OK);
         return "bidList/add";
     }
 
+    @ApiOperation(value = "Adding one bidlist after validation.")
     @PostMapping("/bidList/validate")
     public String validate(@Valid @ModelAttribute("bidList") BidListDto bidListDto, BindingResult result, Model model) {
         if (!result.hasErrors()) {
@@ -55,6 +61,7 @@ public class BidListController {
         return "bidList/add";
     }
 
+    @ApiOperation(value = "Showing bidlist updating form.")
     @GetMapping("/bidList/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("bidList", bidListService.getBidById(id));
@@ -62,6 +69,7 @@ public class BidListController {
         return "bidList/update";
     }
 
+    @ApiOperation(value = "Updating one bidlist after validation.")
     @PostMapping("/bidList/update/{id}")
     public String updateBid(@PathVariable("id") Integer id, @Valid  @ModelAttribute("bidList") BidListDto bidListDto,
                              BindingResult result, Model model) {
@@ -80,6 +88,7 @@ public class BidListController {
         return "redirect:/bidList/list";
     }
 
+    @ApiOperation(value = "Deleting one bidlist.")
     @GetMapping("/bidList/delete/{id}")
     public String deleteBid(@PathVariable("id") Integer id, Model model) {
         bidListService.deleteBidById(id);

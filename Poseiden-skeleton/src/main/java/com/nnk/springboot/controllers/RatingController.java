@@ -13,10 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 
 import javax.validation.Valid;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api("API for rating CRUD operations.")
 @Controller
 public class RatingController {
 
@@ -28,7 +32,8 @@ public class RatingController {
         this.ratingService = ratingService;
     }
 
-    @RequestMapping("/rating/list")
+    @ApiOperation(value = "Retrieving all rating.")
+    @GetMapping("/rating/list")
     public String home(Model model)
     {
         model.addAttribute("ratings", ratingService.getRatings());
@@ -36,12 +41,14 @@ public class RatingController {
         return "rating/list";
     }
 
+    @ApiOperation(value = "Showing rating creation form.")
     @GetMapping("/rating/add")
     public String addRatingForm(@ModelAttribute("rating") RatingDto ratingDto) {
         LOGGER.info("RatingForm successfully found - code : {}", HttpStatus.OK);
         return "rating/add";
     }
 
+    @ApiOperation(value = "Adding one rating after validation.")
     @PostMapping("/rating/validate")
     public String validate(@Valid @ModelAttribute("rating") RatingDto ratingDto, BindingResult result, Model model) {
             if (!result.hasErrors()) {
@@ -54,6 +61,7 @@ public class RatingController {
         return "rating/add";
     }
 
+    @ApiOperation(value = "Showing rating updating form.")
     @GetMapping("/rating/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("rating", ratingService.getRatingById(id));
@@ -61,6 +69,7 @@ public class RatingController {
         return "rating/update";
     }
 
+    @ApiOperation(value = "Updating one rating after validation.")
     @PostMapping("/rating/update/{id}")
     public String updateRating(@PathVariable("id") Integer id, @Valid @ModelAttribute("rating") RatingDto ratingDto,
                              BindingResult result, Model model) {
@@ -79,6 +88,7 @@ public class RatingController {
         return "redirect:/rating/list";
     }
 
+    @ApiOperation(value = "Deleting one rating.")
     @GetMapping("/rating/delete/{id}")
     public String deleteRating(@PathVariable("id") Integer id, Model model) {
         ratingService.deleteRatingById(id);

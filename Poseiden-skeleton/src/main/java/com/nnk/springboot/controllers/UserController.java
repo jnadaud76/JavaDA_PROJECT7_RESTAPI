@@ -14,10 +14,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api("API for user CRUD operations.")
 @Controller
 public class UserController {
 
@@ -29,7 +32,8 @@ public class UserController {
         this.userService = userService;
     }
 
-    @RequestMapping("/user/list")
+    @ApiOperation(value = "Retrieving all user.")
+    @GetMapping("/user/list")
     public String home(Model model)
     {
         model.addAttribute("users", userService.getUsers());
@@ -37,12 +41,14 @@ public class UserController {
         return "user/list";
     }
 
+    @ApiOperation(value = "Showing user creation form.")
     @GetMapping("/user/add")
     public String addUserForm(@ModelAttribute("user") UserDto userDto) {
         LOGGER.info("UserForm successfully found - code : {}", HttpStatus.OK);
         return "user/add";
     }
 
+    @ApiOperation(value = "Adding one user after validation.")
     @PostMapping("/user/validate")
     public String validate(@Valid @ModelAttribute("user") UserDto userDto, BindingResult result, Model model) {
         if (!result.hasErrors()) {
@@ -55,6 +61,7 @@ public class UserController {
         return "user/add";
     }
 
+    @ApiOperation(value = "Showing user updating form.")
     @GetMapping("/user/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
@@ -62,6 +69,7 @@ public class UserController {
         return "user/update";
     }
 
+    @ApiOperation(value = "Updating one user after validation.")
     @PostMapping("/user/update/{id}")
     public String updateUser(@PathVariable("id") Integer id, @Valid @ModelAttribute("user") UserDto userDto,
                              BindingResult result, Model model) {
@@ -81,6 +89,7 @@ public class UserController {
         return "redirect:/user/list";
     }
 
+    @ApiOperation(value = "Deleting one user.")
     @GetMapping("/user/delete/{id}")
     public String deleteUser(@PathVariable("id") Integer id, Model model) {
         userService.deleteUserById(id);

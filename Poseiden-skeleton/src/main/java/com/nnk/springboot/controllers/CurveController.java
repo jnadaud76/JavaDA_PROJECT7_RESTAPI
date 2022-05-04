@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api("API for curvepoint CRUD operations.")
 @Controller
 public class CurveController {
 
@@ -28,7 +31,8 @@ public class CurveController {
         this.curveService = curveService;
     }
 
-    @RequestMapping("/curvePoint/list")
+    @ApiOperation(value = "Retrieving all curvepoint.")
+    @GetMapping("/curvePoint/list")
     public String home(Model model)
     {
        model.addAttribute("curvePoints", curveService.getCurvePoints());
@@ -36,12 +40,14 @@ public class CurveController {
         return "curvePoint/list";
     }
 
+    @ApiOperation(value = "Showing curvepoint creation form.")
     @GetMapping("/curvePoint/add")
     public String addCurveForm(@ModelAttribute("curvePoint") CurvePointDto curvePointDto) {
         LOGGER.info("CurvePointForm successfully found - code : {}", HttpStatus.OK);
         return "curvePoint/add";
     }
 
+    @ApiOperation(value = "Adding one curvepoint after validation.")
     @PostMapping("/curvePoint/validate")
     public String validate(@Valid @ModelAttribute("curvePoint") CurvePointDto curvePointDto, BindingResult result, Model model) {
         if (!result.hasErrors()) {
@@ -54,6 +60,7 @@ public class CurveController {
         return "curvePoint/add";
     }
 
+    @ApiOperation(value = "Showing curvepoint updating form.")
     @GetMapping("/curvePoint/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("curvePoint", curveService.getCurvePointById(id));
@@ -61,6 +68,7 @@ public class CurveController {
         return "curvePoint/update";
     }
 
+    @ApiOperation(value = "Updating one curvepoint after validation.")
     @PostMapping("/curvePoint/update/{id}")
     public String updateCurve(@PathVariable("id") Integer id, @Valid @ModelAttribute("curvePoint") CurvePointDto curvePointDto,
                              BindingResult result, Model model) {
@@ -78,6 +86,7 @@ public class CurveController {
         return "redirect:/curvePoint/list";
     }
 
+    @ApiOperation(value = "Deleting one curvepoint.")
     @GetMapping("/curvePoint/delete/{id}")
     public String deleteCurve(@PathVariable("id") Integer id, Model model) {
         curveService.deleteCurvePointById(id);

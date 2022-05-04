@@ -13,10 +13,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
+@Api("API for trade CRUD operations.")
 @Controller
 public class TradeController {
 
@@ -28,7 +31,8 @@ public class TradeController {
         this.tradeService = tradeService;
     }
 
-    @RequestMapping("/trade/list")
+    @ApiOperation(value = "Retrieving all trade.")
+    @GetMapping("/trade/list")
     public String home(Model model)
     {
         model.addAttribute("trades", tradeService.getTrades());
@@ -36,12 +40,14 @@ public class TradeController {
         return "trade/list";
     }
 
+    @ApiOperation(value = "Showing trade creation form.")
     @GetMapping("/trade/add")
     public String addTradeForm(@ModelAttribute("trade") TradeDto tradeDto) {
         LOGGER.info("TradeForm successfully found - code : {}", HttpStatus.OK);
         return "trade/add";
     }
 
+    @ApiOperation(value = "Adding one trade after validation.")
     @PostMapping("/trade/validate")
     public String validate(@Valid @ModelAttribute("trade") TradeDto tradeDto, BindingResult result, Model model) {
         if (!result.hasErrors()) {
@@ -54,6 +60,7 @@ public class TradeController {
         return "trade/add";
     }
 
+    @ApiOperation(value = "Showing trade updating form.")
     @GetMapping("/trade/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("trade", tradeService.getTradeById(id));
@@ -61,6 +68,7 @@ public class TradeController {
         return "trade/update";
     }
 
+    @ApiOperation(value = "Updating one trade after validation.")
     @PostMapping("/trade/update/{id}")
     public String updateTrade(@PathVariable("id") Integer id, @Valid @ModelAttribute("trade") TradeDto tradeDto,
                              BindingResult result, Model model) {
@@ -78,6 +86,7 @@ public class TradeController {
         return "redirect:/trade/list";
     }
 
+    @ApiOperation(value = "Deleting one trade.")
     @GetMapping("/trade/delete/{id}")
     public String deleteTrade(@PathVariable("id") Integer id, Model model) {
         tradeService.deleteTradeById(id);
