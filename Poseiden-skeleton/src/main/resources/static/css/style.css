@@ -1,0 +1,26 @@
+#main {
+    margin-top: 120px;
+}
+
+#login {
+    height: 40px;
+    width: 120px;
+    background-color: #565252;
+    color: #ffffff;
+    font-size: medium;
+    font-weight: bold;
+}
+
+#github {
+    height: 40px;
+    width: 120px;
+   background-color: #0a1de5;
+    color: #ffffff;
+    font-size: medium;
+    font-weight: bold;
+}
+
+#username, #password {
+    height: 50px;
+    font-size: larger;
+}
