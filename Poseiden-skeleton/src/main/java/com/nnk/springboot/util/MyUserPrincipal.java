@@ -1,4 +1,6 @@
 package com.nnk.springboot.util;
+
+
 import com.nnk.springboot.domain.User;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -14,7 +16,7 @@ import java.util.Set;
 
 public class MyUserPrincipal implements UserDetails {
 
-    private User user;
+    private final User user;
 
     public MyUserPrincipal(User user) {
         this.user = user;
