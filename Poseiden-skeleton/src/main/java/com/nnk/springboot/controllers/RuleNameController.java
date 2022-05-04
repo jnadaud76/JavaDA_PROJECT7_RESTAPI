@@ -3,6 +3,9 @@ package com.nnk.springboot.controllers;
 import com.nnk.springboot.dto.RuleNameDto;
 import com.nnk.springboot.service.IRuleNameService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +20,8 @@ import javax.validation.Valid;
 @Controller
 public class RuleNameController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(RuleNameController.class);
+
     private final IRuleNameService ruleNameService;
 
     public RuleNameController(IRuleNameService ruleNameService) {
@@ -26,11 +31,13 @@ public class RuleNameController {
     @RequestMapping("/ruleName/list")
     public String home(Model model) {
         model.addAttribute("ruleNames", ruleNameService.getRuleNames());
+        LOGGER.info("RuleNames successfully found - code : {}", HttpStatus.OK);
         return "ruleName/list";
     }
 
     @GetMapping("/ruleName/add")
     public String addRuleForm(@ModelAttribute("ruleName") RuleNameDto ruleNameDto) {
+        LOGGER.info("RuleNameForm successfully found - code : {}", HttpStatus.OK);
         return "ruleName/add";
     }
 
@@ -39,13 +46,16 @@ public class RuleNameController {
         if (!result.hasErrors()) {
             ruleNameService.addRuleName(ruleNameDto);
             model.addAttribute("ruleNames", ruleNameService.getRuleNames());
+            LOGGER.info("RuleName successfully saved - code : {}", HttpStatus.FOUND);
             return "redirect:/ruleName/list";
         }
+        LOGGER.error("RuleName cannot be saved - code : {}", HttpStatus.OK);
         return "ruleName/add";
     }
 
     @GetMapping("/ruleName/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
+        LOGGER.info("RuleName UpdateForm successfully found - code : {}", HttpStatus.OK);
         model.addAttribute("ruleName", ruleNameService.getRuleNameById(id));
         return "ruleName/update";
     }
@@ -54,6 +64,7 @@ public class RuleNameController {
     public String updateRuleName(@PathVariable("id") Integer id, @Valid @ModelAttribute("ruleName") RuleNameDto ruleNameDto,
                                  BindingResult result, Model model) {
         if (result.hasErrors()) {
+            LOGGER.error("RuleName cannot be updated - code : {}", HttpStatus.OK);
             return "ruleName/update";
         }
         ruleNameDto.setId(ruleNameDto.getId());
@@ -65,6 +76,7 @@ public class RuleNameController {
         ruleNameDto.setSqlStr(ruleNameDto.getSqlStr());
         ruleNameService.addRuleName(ruleNameDto);
         model.addAttribute("ruleNames", ruleNameService.getRuleNames());
+        LOGGER.info("RuleName successfully updated - code : {}", HttpStatus.FOUND);
         return "redirect:/ruleName/list";
     }
 
@@ -72,6 +84,7 @@ public class RuleNameController {
     public String deleteRuleName(@PathVariable("id") Integer id, Model model) {
         ruleNameService.deleteRuleNameById(id);
         model.addAttribute("ruleNames", ruleNameService.getRuleNames());
+        LOGGER.info("RuleName successfully delete - code : {}", HttpStatus.FOUND);
         return "redirect:/ruleName/list";
     }
 }

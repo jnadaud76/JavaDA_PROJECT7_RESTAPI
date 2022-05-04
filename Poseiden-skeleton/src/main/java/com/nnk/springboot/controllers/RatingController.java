@@ -3,6 +3,9 @@ package com.nnk.springboot.controllers;
 import com.nnk.springboot.dto.RatingDto;
 import com.nnk.springboot.service.IRatingService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +20,8 @@ import javax.validation.Valid;
 @Controller
 public class RatingController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(RatingController.class);
+
     private final IRatingService ratingService;
 
     public RatingController(IRatingService ratingService) {
@@ -27,11 +32,13 @@ public class RatingController {
     public String home(Model model)
     {
         model.addAttribute("ratings", ratingService.getRatings());
+        LOGGER.info("Ratings successfully found - code : {}", HttpStatus.OK);
         return "rating/list";
     }
 
     @GetMapping("/rating/add")
     public String addRatingForm(@ModelAttribute("rating") RatingDto ratingDto) {
+        LOGGER.info("RatingForm successfully found - code : {}", HttpStatus.OK);
         return "rating/add";
     }
 
@@ -40,15 +47,17 @@ public class RatingController {
             if (!result.hasErrors()) {
             ratingService.addRating(ratingDto);
             model.addAttribute("ratings", ratingService.getRatings());
+            LOGGER.info("Rating successfully saved - code : {}", HttpStatus.FOUND);
             return "redirect:/rating/list";
         }
-
+        LOGGER.error("Rating cannot be saved - code : {}", HttpStatus.OK);
         return "rating/add";
     }
 
     @GetMapping("/rating/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("rating", ratingService.getRatingById(id));
+        LOGGER.info("Rating UpdateForm successfully found - code : {}", HttpStatus.OK);
         return "rating/update";
     }
 
@@ -56,6 +65,7 @@ public class RatingController {
     public String updateRating(@PathVariable("id") Integer id, @Valid @ModelAttribute("rating") RatingDto ratingDto,
                              BindingResult result, Model model) {
         if (result.hasErrors()) {
+            LOGGER.error("Rating cannot be updated - code : {}", HttpStatus.OK);
             return "rating/update";
         }
         ratingDto.setId(ratingDto.getId());
@@ -65,6 +75,7 @@ public class RatingController {
         ratingDto.setOrderNumber(ratingDto.getOrderNumber());
         ratingService.addRating(ratingDto);
         model.addAttribute("ratings", ratingService.getRatings());
+        LOGGER.info("Rating successfully updated - code : {}", HttpStatus.FOUND);
         return "redirect:/rating/list";
     }
 
@@ -72,6 +83,7 @@ public class RatingController {
     public String deleteRating(@PathVariable("id") Integer id, Model model) {
         ratingService.deleteRatingById(id);
         model.addAttribute("ratings", ratingService.getRatings());
+        LOGGER.info("Rating successfully delete - code : {}", HttpStatus.FOUND);
         return "redirect:/rating/list";
     }
 }

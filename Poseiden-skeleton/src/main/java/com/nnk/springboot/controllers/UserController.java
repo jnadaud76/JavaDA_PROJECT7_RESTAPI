@@ -4,7 +4,9 @@ import com.nnk.springboot.dto.UserDto;
 import com.nnk.springboot.service.IUserService;
 
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +21,8 @@ import javax.validation.Valid;
 @Controller
 public class UserController {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+
     private final IUserService userService;
 
     public UserController(IUserService userService) {
@@ -29,11 +33,13 @@ public class UserController {
     public String home(Model model)
     {
         model.addAttribute("users", userService.getUsers());
+        LOGGER.info("Users successfully found - code : {}", HttpStatus.OK);
         return "user/list";
     }
 
     @GetMapping("/user/add")
-    public String addUser(@ModelAttribute("user") UserDto userDto) {
+    public String addUserForm(@ModelAttribute("user") UserDto userDto) {
+        LOGGER.info("UserForm successfully found - code : {}", HttpStatus.OK);
         return "user/add";
     }
 
@@ -42,14 +48,17 @@ public class UserController {
         if (!result.hasErrors()) {
             userService.addUser(userDto);
             model.addAttribute("users", userService.getUsers());
+            LOGGER.info("User successfully saved - code : {}", HttpStatus.FOUND);
             return "redirect:/user/list";
         }
+        LOGGER.error("User cannot be saved - code : {}", HttpStatus.OK);
         return "user/add";
     }
 
     @GetMapping("/user/update/{id}")
     public String showUpdateForm(@PathVariable("id") Integer id, Model model) {
         model.addAttribute("user", userService.getUserById(id));
+        LOGGER.info("User UpdateForm successfully found - code : {}", HttpStatus.OK);
         return "user/update";
     }
 
@@ -57,6 +66,7 @@ public class UserController {
     public String updateUser(@PathVariable("id") Integer id, @Valid @ModelAttribute("user") UserDto userDto,
                              BindingResult result, Model model) {
         if (result.hasErrors()) {
+            LOGGER.error("User cannot be updated - code : {}", HttpStatus.OK);
             return "user/update";
         }
 
@@ -67,6 +77,7 @@ public class UserController {
         userDto.setId(id);
         userService.addUser(userDto);
         model.addAttribute("users", userService.getUsers());
+        LOGGER.info("User successfully updated - code : {}", HttpStatus.FOUND);
         return "redirect:/user/list";
     }
 
@@ -74,6 +85,7 @@ public class UserController {
     public String deleteUser(@PathVariable("id") Integer id, Model model) {
         userService.deleteUserById(id);
         model.addAttribute("users", userService.getUsers());
+        LOGGER.info("User successfully delete - code : {}", HttpStatus.FOUND);
         return "redirect:/user/list";
     }
 }

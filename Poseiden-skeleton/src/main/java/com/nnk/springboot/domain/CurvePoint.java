@@ -33,15 +33,6 @@ public class CurvePoint {
     @Column(name= "creation_Date")
     private LocalDateTime creationDate;
 
-    public CurvePoint() {
-    }
-
-    public CurvePoint(Integer curveId, Double term, Double value) {
-        this.curveId = curveId;
-        this.term = term;
-        this.value = value;
-    }
-
     public Integer getId() {
         return id;
     }

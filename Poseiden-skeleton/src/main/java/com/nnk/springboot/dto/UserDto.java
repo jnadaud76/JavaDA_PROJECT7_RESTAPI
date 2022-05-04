@@ -13,7 +13,8 @@ public class UserDto {
     @Column(unique=true)
     @NotBlank(message = "Username is mandatory")
     private String username;
-    @Pattern(regexp="(?=.{8,20}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\\W).*$", message = "Password must contain an uppercase letter a\n" +
+    @Pattern(regexp="(?=.{8,20}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\\W).*$",
+            message = "Password must contain an uppercase letter a\n" +
             "lowercase letter a number a special character and be between 8 and 20 characters")
     @NotBlank(message = "Password is mandatory")
     private String password;
