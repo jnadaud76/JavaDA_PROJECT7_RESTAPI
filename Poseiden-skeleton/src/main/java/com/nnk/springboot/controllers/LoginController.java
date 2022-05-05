@@ -28,7 +28,7 @@ public class LoginController {
         if (error != null) {
             model.addAttribute("error", "Invalid username and password.");
             LOGGER.error("Access to 403 page. Invalid username and password.");
-            return "403";
+            return "/error/403";
         }
         LOGGER.info("Access to login page.");
         return "login";
@@ -49,7 +49,7 @@ public class LoginController {
         return "redirect:/bidList/list";
     }
 
-    private StringBuilder getUsernamePasswordLoginInfo(Principal user) {
+     private StringBuilder getUsernamePasswordLoginInfo(Principal user) {
         StringBuilder usernameInfo = new StringBuilder();
 
         UsernamePasswordAuthenticationToken token = ((UsernamePasswordAuthenticationToken) user);
@@ -76,5 +76,6 @@ public class LoginController {
         }
         return protectedInfo;
     }
+
 }
 

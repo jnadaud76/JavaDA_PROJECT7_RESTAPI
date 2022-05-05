@@ -9,9 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import com.nnk.springboot.controllers.BidListController;
 import com.nnk.springboot.controllers.RuleNameController;
-import com.nnk.springboot.domain.RuleName;
 import com.nnk.springboot.dto.RuleNameDto;
 import com.nnk.springboot.service.IRuleNameService;
 import com.nnk.springboot.service.MyUserDetailsService;
