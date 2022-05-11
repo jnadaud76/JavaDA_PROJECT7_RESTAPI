@@ -26,20 +26,20 @@ public class UserService implements IUserService {
         this.conversion = conversion;
     }
 
-   public List<UserDto> getUsers() {
+    public List<UserDto> getUsers() {
         List<User> users = userRepository.findAll();
         return users.stream()
                 .map(conversion::userToUserDto)
                 .collect(Collectors.toList());
     }
 
-    public Boolean addUser(UserDto userDto){
+    public Boolean addUser(UserDto userDto) {
         userRepository.save(conversion.userDtoToUser(userDto));
         return true;
-        }
+    }
 
-    public UserDto getUserById(Integer id){
-        if(userRepository.existsById(id)){
+    public UserDto getUserById(Integer id) {
+        if (userRepository.existsById(id)) {
             return conversion.userToUserDto(userRepository.getById(id));
         } else {
             throw new IllegalArgumentException("Invalid user Id:" + id);
@@ -47,8 +47,8 @@ public class UserService implements IUserService {
 
     }
 
-    public Boolean deleteUserById(Integer id){
-        if(userRepository.existsById(id)){
+    public Boolean deleteUserById(Integer id) {
+        if (userRepository.existsById(id)) {
             userRepository.delete(userRepository.getById(id));
         } else {
             throw new IllegalArgumentException("Invalid user Id:" + id);

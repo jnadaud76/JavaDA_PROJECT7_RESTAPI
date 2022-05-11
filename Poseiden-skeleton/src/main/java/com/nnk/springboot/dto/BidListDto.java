@@ -8,14 +8,14 @@ import javax.validation.constraints.Size;
 
 public class BidListDto {
 
-     private Integer id;
+    private Integer id;
     @NotBlank(message = "Account is mandatory")
-    @Size(max=30)
+    @Size(max = 30)
     private String account;
     @NotBlank(message = "Type is mandatory")
-    @Size(max=30)
+    @Size(max = 30)
     private String type;
-    @DecimalMin(value="0.1", message="Must be greater than or equal to 0.1 ")
+    @DecimalMin(value = "0.1", message = "Must be greater than or equal to 0.1 ")
     private Double bidQuantity;
 
     public Integer getId() {

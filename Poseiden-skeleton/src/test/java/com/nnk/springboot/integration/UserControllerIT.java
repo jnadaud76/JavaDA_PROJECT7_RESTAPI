@@ -84,10 +84,10 @@ class UserControllerIT {
     @Test
     void TestUpdateUser() throws Exception {
         mockMvc.perform(post("/user/update/2")
-                .param("username", "test5")
-                .param("password", "Re123456789*")
-                .param("fullname", "test5")
-                .param("role", "USER"))
+                        .param("username", "test5")
+                        .param("password", "Re123456789*")
+                        .param("fullname", "test5")
+                        .param("role", "USER"))
                 .andExpect(status().isFound())
                 .andExpect(redirectedUrl("/user/list"));
     }

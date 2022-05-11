@@ -37,7 +37,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
         http
                 .authorizeRequests()
-                .antMatchers( "/static.css/**", "/", "/h2-console/**").permitAll()
+                .antMatchers("/static.css/**", "/", "/h2-console/**").permitAll()
                 .antMatchers("/swagger-ui/**").permitAll()
                 .antMatchers("/user/*").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
@@ -45,7 +45,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .defaultSuccessUrl("/loginsuccess", true)
-                 .and()
+                .and()
                 .oauth2Login()
                 .loginPage("/login").permitAll()
                 .defaultSuccessUrl("/loginsuccess", true)

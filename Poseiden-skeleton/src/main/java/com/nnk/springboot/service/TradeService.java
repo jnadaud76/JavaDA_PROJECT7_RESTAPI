@@ -32,13 +32,13 @@ public class TradeService implements ITradeService {
                 .collect(Collectors.toList());
     }
 
-    public Boolean addTrade(TradeDto tradeDto){
+    public Boolean addTrade(TradeDto tradeDto) {
         tradeRepository.save(conversion.tradeDtoToTrade(tradeDto));
         return true;
     }
 
-    public TradeDto getTradeById(Integer id){
-        if(tradeRepository.existsById(id)){
+    public TradeDto getTradeById(Integer id) {
+        if (tradeRepository.existsById(id)) {
             return conversion.tradeToTradeDto(tradeRepository.getById(id));
         } else {
             throw new IllegalArgumentException("Invalid trade Id:" + id);
@@ -46,8 +46,8 @@ public class TradeService implements ITradeService {
 
     }
 
-    public Boolean deleteTradeById(Integer id){
-        if(tradeRepository.existsById(id)){
+    public Boolean deleteTradeById(Integer id) {
+        if (tradeRepository.existsById(id)) {
             tradeRepository.delete(tradeRepository.getById(id));
         } else {
             throw new IllegalArgumentException("Invalid trade Id:" + id);

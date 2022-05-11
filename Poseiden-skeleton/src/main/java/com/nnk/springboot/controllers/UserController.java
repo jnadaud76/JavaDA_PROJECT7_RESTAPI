@@ -34,8 +34,7 @@ public class UserController {
 
     @ApiOperation(value = "Retrieving all user.")
     @GetMapping("/user/list")
-    public String home(Model model)
-    {
+    public String home(Model model) {
         model.addAttribute("users", userService.getUsers());
         LOGGER.info("Users successfully found - code : {}", HttpStatus.OK);
         return "user/list";

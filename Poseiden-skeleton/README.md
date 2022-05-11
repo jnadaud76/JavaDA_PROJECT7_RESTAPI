@@ -1,31 +1,75 @@
-# spring-boot
-## Technical:
+# Poseidon
+This application is an API REST using Spring Boot framework and Spring Security.
+It's a web-deployed enterprise software that aims to drive more trades for institutional investors buying and selling fixed income securities.
 
-1. Framework: Spring Boot v2.0.4
-2. Java 8
+### Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites
+
+What things you need to install the software and how to install them
+
+1. Framework: Spring Boot v2.6.4
+2. Java 1.8
 3. Thymeleaf
 4. Bootstrap v.4.3.1
+5. Maven 3.8.2
+6. MySql 8.0.27
 
+### Installing
 
-## Setup with Intellij IDE
-1. Create project from Initializr: File > New > project > Spring Initializr
-2. Add lib repository into pom.xml
-3. Add folders
-    - Source root: src/main/java
-    - View: src/main/resources
-    - Static: src/main/resource/static
-4. Create database with name "demo" as configuration in application.properties
-5. Run sql script to create table doc/data.sql
+A step by step series of examples that tell you how to get a development env running:
 
-## Implement a Feature
-1. Create mapping domain class and place in package com.nnk.springboot.domain
-2. Create repository class and place in package com.nnk.springboot.repositories
-3. Create controller class and place in package com.nnk.springboot.controllers
-4. Create view files and place in src/main/resource/templates
+1.Install Java:
 
-## Write Unit Test
-1. Create unit test and place in package com.nnk.springboot in folder test > java
+https://docs.oracle.com/javase/8/docs/technotes/guides/install/install_overview.html
 
-## Security
-1. Create user service to load user from  database and place in package com.nnk.springboot.services
-2. Add configuration class and place in package com.nnk.springboot.config
+2.Install Maven:
+
+https://maven.apache.org/install.html
+
+3.Install DataBase:
+
+For security reasons, you should use your own database system with name "demo" by changing spring.datasource.url and spring.datasource.username in the application.properties file. In any case the password or the whole configuration will have to be outsourced.
+Run sql script to create table doc/data.sql
+
+### Default configuration
+
+Controller URL = http://localhost:8080
+
+Port can be change in application.properties
+
+Log file location : c:/temp/logs/poseidon
+
+### Running App
+
+Import the code into an IDE of your choice and run the Application.java to launch the application.
+
+Or with "spring-boot-skeleton-1.0.0.jar" file, open a Terminal and execute the below command.
+
+`java -jar spring-boot-skeleton-1.0.0.jar`
+
+### Testing
+
+The app has unit tests and integration tests written.
+
+To run the tests from maven, open a Terminal and execute the below command.
+
+`mvn verify`
+
+### Endpoints and URLS
+
+For more information, run app and consult : http://localhost:8080/swagger-ui/index.html
+
+### Maven site
+
+You can generate a maven site containing :
+
+- FailSafe report;
+- SureFire report;
+- Jacoco report;
+
+To do so, open a Terminal and execute the below command.
+
+`mvn verify site`

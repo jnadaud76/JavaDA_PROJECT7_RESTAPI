@@ -10,22 +10,22 @@ import javax.validation.constraints.Size;
 @Table(name = "rulename")
 public class RuleName {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id")
     private Integer id;
-    @Size(max=125)
+    @Size(max = 125)
     private String name;
-    @Size(max=125)
+    @Size(max = 125)
     private String description;
-    @Size(max=125)
+    @Size(max = 125)
     private String json;
-    @Size(max=512)
+    @Size(max = 512)
     private String template;
-    @Size(max=125)
-    @Column(name= "sql_Str")
+    @Size(max = 125)
+    @Column(name = "sql_Str")
     private String sqlStr;
-    @Column(name= "sql_Part")
-    @Size(max=125)
+    @Column(name = "sql_Part")
+    @Size(max = 125)
     private String sqlPart;
 
     public Integer getId() {

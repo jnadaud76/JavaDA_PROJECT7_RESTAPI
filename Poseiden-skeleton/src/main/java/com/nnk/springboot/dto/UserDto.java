@@ -9,19 +9,19 @@ import javax.validation.constraints.Size;
 public class UserDto {
 
     private Integer id;
-    @Size(max=125)
-    @Column(unique=true)
+    @Size(max = 125)
+    @Column(unique = true)
     @NotBlank(message = "Username is mandatory")
     private String username;
-    @Pattern(regexp="(?=.{8,20}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\\W).*$",
+    @Pattern(regexp = "(?=.{8,20}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\\W).*$",
             message = "Password must contain an uppercase letter a\n" +
-            "lowercase letter a number a special character and be between 8 and 20 characters")
+                    "lowercase letter a number a special character and be between 8 and 20 characters")
     @NotBlank(message = "Password is mandatory")
     private String password;
-    @Size(max=125)
+    @Size(max = 125)
     @NotBlank(message = "FullName is mandatory")
     private String fullname;
-    @Size(max=125)
+    @Size(max = 125)
     @NotBlank(message = "Role is mandatory")
     private String role;
 

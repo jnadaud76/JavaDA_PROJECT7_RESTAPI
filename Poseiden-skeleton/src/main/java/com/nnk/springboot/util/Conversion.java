@@ -133,7 +133,7 @@ public class Conversion implements IConversion {
         return userDto;
     }
 
-   public User userDtoToUser(final UserDto userDto){
+    public User userDtoToUser(final UserDto userDto) {
         User user = new User();
         user.setId(userDto.getId());
         user.setUsername(userDto.getUsername());

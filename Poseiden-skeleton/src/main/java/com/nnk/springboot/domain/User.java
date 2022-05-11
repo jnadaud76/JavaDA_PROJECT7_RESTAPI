@@ -12,19 +12,19 @@ import javax.validation.constraints.Size;
 public class User {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id")
     private Integer id;
-    @Size(max=125)
-    @Column(unique=true)
+    @Size(max = 125)
+    @Column(unique = true)
     @NotBlank(message = "Username is mandatory")
     private String username;
     @NotBlank(message = "Password is mandatory")
     private String password;
-    @Size(max=125)
+    @Size(max = 125)
     @NotBlank(message = "FullName is mandatory")
     private String fullname;
-    @Size(max=125)
+    @Size(max = 125)
     @NotBlank(message = "Role is mandatory")
     private String role;
 

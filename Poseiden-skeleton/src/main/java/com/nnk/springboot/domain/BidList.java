@@ -18,59 +18,59 @@ import java.time.LocalDateTime;
 @Table(name = "bidlist")
 public class BidList {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Bid_List_Id")
     private Integer id;
     @NotBlank(message = "Account is mandatory")
-    @Length(max=30)
+    @Length(max = 30)
     private String account;
     @NotBlank(message = "Type is mandatory")
-    @Size(max=30)
+    @Size(max = 30)
     private String type;
-    @DecimalMin(value="0.1", message="Must be greater than or equal to 0.1 ")
-    @Column(name= "bid_Quantity")
+    @DecimalMin(value = "0.1", message = "Must be greater than or equal to 0.1 ")
+    @Column(name = "bid_Quantity")
     private Double bidQuantity;
-    @DecimalMin(value="0.1", message="Must be greater than or equal to 0.1 ")
-    @Column(name= "ask_Quantity")
+    @DecimalMin(value = "0.1", message = "Must be greater than or equal to 0.1 ")
+    @Column(name = "ask_Quantity")
     private Double askQuantity;
-    @DecimalMin(value="0.1", message="Must be greater than or equal to 0.1 ")
+    @DecimalMin(value = "0.1", message = "Must be greater than or equal to 0.1 ")
     private Double bid;
-    @DecimalMin(value="0.1", message="Must be greater than or equal to 0.1 ")
+    @DecimalMin(value = "0.1", message = "Must be greater than or equal to 0.1 ")
     private Double ask;
-    @Size(max=125)
+    @Size(max = 125)
     private String benchmark;
-    @Column(name= "bid_List_Date")
+    @Column(name = "bid_List_Date")
     private LocalDateTime bidListDate;
-    @Size(max=125)
+    @Size(max = 125)
     private String commentary;
-    @Size(max=125)
+    @Size(max = 125)
     private String security;
-    @Size(max=10)
+    @Size(max = 10)
     private String status;
-    @Size(max=125)
+    @Size(max = 125)
     private String trader;
-    @Size(max=125)
+    @Size(max = 125)
     private String book;
-    @Size(max=125)
-    @Column(name= "creation_Name")
+    @Size(max = 125)
+    @Column(name = "creation_Name")
     private String creationName;
-    @Column(name= "creation_Date")
+    @Column(name = "creation_Date")
     private Timestamp creationDate;
-    @Size(max=125)
-    @Column(name= "revision_Name")
+    @Size(max = 125)
+    @Column(name = "revision_Name")
     private String revisionName;
-    @Column(name= "revision_Date")
+    @Column(name = "revision_Date")
     private LocalDateTime revisionDate;
-    @Size(max=125)
-    @Column(name= "deal_Name")
+    @Size(max = 125)
+    @Column(name = "deal_Name")
     private String dealName;
-    @Size(max=125)
-    @Column(name= "deal_Type")
+    @Size(max = 125)
+    @Column(name = "deal_Type")
     private String dealType;
-    @Size(max=125)
-    @Column(name= "source_List_Id")
+    @Size(max = 125)
+    @Column(name = "source_List_Id")
     private String sourceListId;
-    @Size(max=125)
+    @Size(max = 125)
     private String side;
 
     public Integer getId() {

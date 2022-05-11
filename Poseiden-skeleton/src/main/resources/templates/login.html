@@ -2,37 +2,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title> Login </title>
-    <link rel="stylesheet" href="../../css/bootstrap.min.css" >
-    <link rel="stylesheet" href="../../css/style.css" >
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 </div>
 <div class="row py-5" id="main">
-<div class="form-container col-4 border border-dark rounded-2 py-3 m-auto">
-    <div class="col-11 text-center rounded py-1 m-auto">
-        <h4>Login with Username and Password</h4>
+    <div class="form-container col-4 border border-dark rounded-2 py-3 m-auto">
+        <div class="col-11 text-center rounded py-1 m-auto">
+            <h4>Login with Username and Password</h4>
+        </div>
+        <form th:action="@{/login}" method="post">
+            <div class="col-11 mx-auto py-3">
+                <label>User Name</label>
+                <input id="username" class="col-12" type="text" name="username" th:required="required"
+                       th:autofocus="autofocus"/>
+                <br/>
+            </div>
+            <div class="col-11 mx-auto py-3">
+                <label>Password</label>
+                <input id="password" class="col-12" type="password" name="password" th:required="required"/>
+                <br/>
+            </div>
+            <div class="col-11 m-auto py-3">
+                <input id="login" class="btn btn-dark" type="submit" value="Login"/>
+            </div>
+        </form>
+        <form th:action="@{/oauth2/authorization/github}" method="post">
+            <div class="col-11 m-auto py-3">
+                <input id="github" class="btn btn-dark" type="submit" value="Git Hub"/>
+            </div>
+        </form>
     </div>
-    <form th:action="@{/login}" method="post">
-        <div class="col-11 mx-auto py-3">
-        <label >User Name</label>
-        <input id="username" class="col-12" type="text" name="username" th:required="required" th:autofocus="autofocus"/>
-        <br/>
-        </div>
-        <div class="col-11 mx-auto py-3">
-        <label>Password</label>
-        <input id="password" class="col-12" type="password" name="password" th:required="required" />
-        <br/>
-        </div>
-        <div class="col-11 m-auto py-3">
-        <input id="login" class="btn btn-dark" type="submit" value="Login"/>
-        </div>
-    </form>
-    <form th:action="@{/oauth2/authorization/github}" method="post">
-        <div class="col-11 m-auto py-3">
-            <input id="github" class="btn btn-dark" type="submit" value="Git Hub"/>
-        </div>
-    </form>
-</div>
 </div>
 </body>
 </html>

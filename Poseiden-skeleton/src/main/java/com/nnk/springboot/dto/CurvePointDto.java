@@ -10,9 +10,9 @@ public class CurvePointDto {
     @NotNull(message = "Must not be null")
     @Positive(message = "Must be at least 1")
     private Integer curveId;
-    @DecimalMin(value="0.1", message="Must be greater than or equal to 0.1 ")
+    @DecimalMin(value = "0.1", message = "Must be greater than or equal to 0.1 ")
     private Double term;
-    @DecimalMin(value="0.1", message="Must be greater than or equal to 0.1 ")
+    @DecimalMin(value = "0.1", message = "Must be greater than or equal to 0.1 ")
     private Double value;
 
     public Integer getId() {

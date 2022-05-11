@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
 
 @Service
 @Transactional
-public class CurveService implements ICurveService{
+public class CurveService implements ICurveService {
 
     private final CurvePointRepository curvePointRepository;
 
@@ -32,14 +32,14 @@ public class CurveService implements ICurveService{
                 .collect(Collectors.toList());
     }
 
-    public Boolean addCurvePoint(CurvePointDto curvePointDto){
+    public Boolean addCurvePoint(CurvePointDto curvePointDto) {
         curvePointRepository.save(conversion.curvePointDtoToCurvePoint(curvePointDto));
         return true;
 
     }
 
-    public CurvePointDto getCurvePointById(Integer id){
-        if(curvePointRepository.existsById(id)){
+    public CurvePointDto getCurvePointById(Integer id) {
+        if (curvePointRepository.existsById(id)) {
             return conversion.curvePointToCurvePointDto(curvePointRepository.getById(id));
         } else {
             throw new IllegalArgumentException("Invalid curvePoint Id:" + id);
@@ -47,12 +47,12 @@ public class CurveService implements ICurveService{
 
     }
 
-    public Boolean deleteCurvePointById(Integer id){
-        if(curvePointRepository.existsById(id)){
+    public Boolean deleteCurvePointById(Integer id) {
+        if (curvePointRepository.existsById(id)) {
             curvePointRepository.delete(curvePointRepository.getById(id));
         } else {
             throw new IllegalArgumentException("Invalid curvePoint Id:" + id);
         }
-    return true;
+        return true;
     }
 }

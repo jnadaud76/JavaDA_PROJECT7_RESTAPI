@@ -49,7 +49,7 @@ public class LoginController {
         return "redirect:/bidList/list";
     }
 
-     private StringBuilder getUsernamePasswordLoginInfo(Principal user) {
+    private StringBuilder getUsernamePasswordLoginInfo(Principal user) {
         StringBuilder usernameInfo = new StringBuilder();
 
         UsernamePasswordAuthenticationToken token = ((UsernamePasswordAuthenticationToken) user);

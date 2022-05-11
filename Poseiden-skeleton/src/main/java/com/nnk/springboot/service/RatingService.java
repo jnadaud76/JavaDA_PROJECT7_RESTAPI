@@ -32,13 +32,13 @@ public class RatingService implements IRatingService {
                 .collect(Collectors.toList());
     }
 
-    public Boolean addRating(RatingDto ratingDto){
+    public Boolean addRating(RatingDto ratingDto) {
         ratingRepository.save(conversion.ratingDtoToRating(ratingDto));
         return true;
     }
 
-    public RatingDto getRatingById(Integer id){
-        if(ratingRepository.existsById(id)){
+    public RatingDto getRatingById(Integer id) {
+        if (ratingRepository.existsById(id)) {
             return conversion.ratingToRatingDto(ratingRepository.getById(id));
         } else {
             throw new IllegalArgumentException("Invalid rating Id:" + id);
@@ -46,8 +46,8 @@ public class RatingService implements IRatingService {
 
     }
 
-    public Boolean deleteRatingById(Integer id){
-        if(ratingRepository.existsById(id)){
+    public Boolean deleteRatingById(Integer id) {
+        if (ratingRepository.existsById(id)) {
             ratingRepository.delete(ratingRepository.getById(id));
         } else {
             throw new IllegalArgumentException("Invalid rating Id:" + id);

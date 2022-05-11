@@ -11,20 +11,20 @@ import javax.validation.constraints.Size;
 @Table(name = "rating")
 public class Rating {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id")
     private Integer id;
-    @Size(max=125)
-    @Column(name= "moodys_Rating")
+    @Size(max = 125)
+    @Column(name = "moodys_Rating")
     private String moodysRating;
-    @Size(max=125)
-    @Column(name="sandPRating")
+    @Size(max = 125)
+    @Column(name = "sandPRating")
     private String sandPRating;
-    @Size(max=125)
-    @Column(name= "fitch_Rating")
+    @Size(max = 125)
+    @Column(name = "fitch_Rating")
     private String fitchRating;
     @Positive(message = "Must be at least 1")
-    @Column(name= "order_Number")
+    @Column(name = "order_Number")
     private Integer orderNumber;
 
     public Integer getId() {

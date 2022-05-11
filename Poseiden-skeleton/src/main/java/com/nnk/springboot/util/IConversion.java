@@ -19,7 +19,7 @@ public interface IConversion {
 
     BidList bidListDtoToBidList(BidListDto bidListDto);
 
-    CurvePointDto curvePointToCurvePointDto (CurvePoint curvePoint);
+    CurvePointDto curvePointToCurvePointDto(CurvePoint curvePoint);
 
     CurvePoint curvePointDtoToCurvePoint(CurvePointDto curvePointDto);
 

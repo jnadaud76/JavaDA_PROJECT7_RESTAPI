@@ -33,21 +33,21 @@ public class RuleNameService implements IRuleNameService {
                 .collect(Collectors.toList());
     }
 
-    public Boolean addRuleName(RuleNameDto ruleNameDto){
+    public Boolean addRuleName(RuleNameDto ruleNameDto) {
         ruleNameRepository.save(conversion.ruleNameDtoToRuleName(ruleNameDto));
         return true;
     }
 
-    public RuleNameDto getRuleNameById(Integer id){
-        if (ruleNameRepository.existsById(id)){
+    public RuleNameDto getRuleNameById(Integer id) {
+        if (ruleNameRepository.existsById(id)) {
             return conversion.ruleNameToRuleNameDto(ruleNameRepository.getById(id));
         } else {
             throw new IllegalArgumentException("Invalid ruleName Id:" + id);
         }
     }
 
-    public Boolean deleteRuleNameById(Integer id){
-        if (ruleNameRepository.existsById(id)){
+    public Boolean deleteRuleNameById(Integer id) {
+        if (ruleNameRepository.existsById(id)) {
             ruleNameRepository.delete(ruleNameRepository.getById(id));
         } else {
             throw new IllegalArgumentException("Invalid ruleName Id:" + id);

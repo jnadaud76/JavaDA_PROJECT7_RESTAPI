@@ -6,11 +6,11 @@ import javax.validation.constraints.Size;
 public class RatingDto {
 
     private Integer id;
-    @Size(max=125)
+    @Size(max = 125)
     private String moodysRating;
-    @Size(max=125)
+    @Size(max = 125)
     private String sandPRating;
-    @Size(max=125)
+    @Size(max = 125)
     private String fitchRating;
     @Positive(message = "Must be at least 1")
     private Integer orderNumber;

@@ -15,22 +15,22 @@ import java.time.LocalDateTime;
 @Table(name = "curvepoint")
 public class CurvePoint {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="Id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id")
     private Integer id;
     @NotNull(message = "Must not be null")
     @Positive(message = "Must be at least 1")
-    @Column(name= "Curve_Id")
+    @Column(name = "Curve_Id")
     private Integer curveId;
-    @Column(name= "as_Of_Date")
+    @Column(name = "as_Of_Date")
     private LocalDateTime asOfDate;
-    @DecimalMin(value="0.1", message="Must be greater than or equal to 0.1 ")
-    @Column(name="term")
+    @DecimalMin(value = "0.1", message = "Must be greater than or equal to 0.1 ")
+    @Column(name = "term")
     private Double term;
-    @DecimalMin(value="0.1", message="Must be greater than or equal to 0.1 ")
-    @Column(name="value")
+    @DecimalMin(value = "0.1", message = "Must be greater than or equal to 0.1 ")
+    @Column(name = "value")
     private Double value;
-    @Column(name= "creation_Date")
+    @Column(name = "creation_Date")
     private LocalDateTime creationDate;
 
     public Integer getId() {

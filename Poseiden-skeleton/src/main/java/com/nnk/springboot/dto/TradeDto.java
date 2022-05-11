@@ -6,9 +6,9 @@ import javax.validation.constraints.Size;
 public class TradeDto {
 
     private Integer id;
-    @Size(max=30)
+    @Size(max = 30)
     private String account;
-    @Size(max=30)
+    @Size(max = 30)
     private String type;
     @Positive(message = "Must be at least 1")
     private Double buyQuantity;

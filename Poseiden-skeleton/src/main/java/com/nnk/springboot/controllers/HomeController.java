@@ -12,7 +12,7 @@ public class HomeController {
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
     @RequestMapping("/")
-    public String home(){
+    public String home() {
         LOGGER.info("Redirection to /login");
         return "redirect:/login";
     }

@@ -33,9 +33,8 @@ public class CurveController {
 
     @ApiOperation(value = "Retrieving all curvepoint.")
     @GetMapping("/curvePoint/list")
-    public String home(Model model)
-    {
-       model.addAttribute("curvePoints", curveService.getCurvePoints());
+    public String home(Model model) {
+        model.addAttribute("curvePoints", curveService.getCurvePoints());
         LOGGER.info("CurvePoints successfully found - code : {}", HttpStatus.OK);
         return "curvePoint/list";
     }
@@ -71,7 +70,7 @@ public class CurveController {
     @ApiOperation(value = "Updating one curvepoint after validation.")
     @PostMapping("/curvePoint/update/{id}")
     public String updateCurve(@PathVariable("id") Integer id, @Valid @ModelAttribute("curvePoint") CurvePointDto curvePointDto,
-                             BindingResult result, Model model) {
+                              BindingResult result, Model model) {
         if (result.hasErrors()) {
             LOGGER.error("CurvePoint cannot be updated - code : {}", HttpStatus.OK);
             return "curvePoint/update";

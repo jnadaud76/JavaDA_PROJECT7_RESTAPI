@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
 
 @Service
 @Transactional
-public class BidListService implements IBidListService{
+public class BidListService implements IBidListService {
 
 
     private final BidListRepository bidListRepository;
@@ -27,40 +27,39 @@ public class BidListService implements IBidListService{
     }
 
     public List<BidListDto> getBidLists() {
-       List<BidList> bidLists = bidListRepository.findAll();
+        List<BidList> bidLists = bidListRepository.findAll();
         return bidLists.stream()
                 .map(conversion::bidListToBidListDto)
                 .collect(Collectors.toList());
 
-   }
+    }
 
-   public Boolean addBidList(BidListDto bidListDto) {
-    bidListRepository.save(conversion.bidListDtoToBidList(bidListDto));
-    return true;
-   }
+    public Boolean addBidList(BidListDto bidListDto) {
+        bidListRepository.save(conversion.bidListDtoToBidList(bidListDto));
+        return true;
+    }
 
-   public BidListDto getBidById(Integer id) {
-       if(bidListRepository.existsById(id)){
-           BidList bidList = bidListRepository.getById(id);
-           return conversion.bidListToBidListDto(bidList);
+    public BidListDto getBidById(Integer id) {
+        if (bidListRepository.existsById(id)) {
+            BidList bidList = bidListRepository.getById(id);
+            return conversion.bidListToBidListDto(bidList);
 
-       } else {
-           throw new IllegalArgumentException("Invalid bid Id:" + id);
-       }
+        } else {
+            throw new IllegalArgumentException("Invalid bid Id:" + id);
+        }
 
-   }
+    }
 
-   public Boolean deleteBidById(Integer id) {
+    public Boolean deleteBidById(Integer id) {
 
-       if(bidListRepository.existsById(id)){
-           bidListRepository.delete(bidListRepository.getById(id));
-       } else {
-           throw new IllegalArgumentException("Invalid bid Id:" + id);
+        if (bidListRepository.existsById(id)) {
+            bidListRepository.delete(bidListRepository.getById(id));
+        } else {
+            throw new IllegalArgumentException("Invalid bid Id:" + id);
 
-       }
-       return true;
-   }
-
+        }
+        return true;
+    }
 
 
 }

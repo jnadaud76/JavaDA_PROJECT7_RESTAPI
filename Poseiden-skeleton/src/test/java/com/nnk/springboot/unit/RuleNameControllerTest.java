@@ -107,8 +107,8 @@ class RuleNameControllerTest {
 
         mockMvc.perform(post("/ruleName/validate")
                         .param("name",
-                                "123456789123456789123456789123456789"+
-                                        "12345678912345678912346567891234567891323456789"+
+                                "123456789123456789123456789123456789" +
+                                        "12345678912345678912346567891234567891323456789" +
                                         "12345678912345667891234567891323456789123456789")
                         .param("description", "cinq")
                         .param("json", "cinq")
@@ -161,8 +161,8 @@ class RuleNameControllerTest {
     void TestUpdateBidWithBadArguments() throws Exception {
         mockMvc.perform(post("/ruleName/update/1")
                         .param("name",
-                                "123456789123456789123456789123456789"+
-                                        "12345678912345678912346567891234567891323456789"+
+                                "123456789123456789123456789123456789" +
+                                        "12345678912345678912346567891234567891323456789" +
                                         "12345678912345667891234567891323456789123456789")
                         .param("description", "cinq")
                         .param("json", "cinq")

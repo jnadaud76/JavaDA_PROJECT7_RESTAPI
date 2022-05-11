@@ -34,8 +34,7 @@ public class RatingController {
 
     @ApiOperation(value = "Retrieving all rating.")
     @GetMapping("/rating/list")
-    public String home(Model model)
-    {
+    public String home(Model model) {
         model.addAttribute("ratings", ratingService.getRatings());
         LOGGER.info("Ratings successfully found - code : {}", HttpStatus.OK);
         return "rating/list";
@@ -51,7 +50,7 @@ public class RatingController {
     @ApiOperation(value = "Adding one rating after validation.")
     @PostMapping("/rating/validate")
     public String validate(@Valid @ModelAttribute("rating") RatingDto ratingDto, BindingResult result, Model model) {
-            if (!result.hasErrors()) {
+        if (!result.hasErrors()) {
             ratingService.addRating(ratingDto);
             model.addAttribute("ratings", ratingService.getRatings());
             LOGGER.info("Rating successfully saved - code : {}", HttpStatus.FOUND);
@@ -72,7 +71,7 @@ public class RatingController {
     @ApiOperation(value = "Updating one rating after validation.")
     @PostMapping("/rating/update/{id}")
     public String updateRating(@PathVariable("id") Integer id, @Valid @ModelAttribute("rating") RatingDto ratingDto,
-                             BindingResult result, Model model) {
+                               BindingResult result, Model model) {
         if (result.hasErrors()) {
             LOGGER.error("Rating cannot be updated - code : {}", HttpStatus.OK);
             return "rating/update";

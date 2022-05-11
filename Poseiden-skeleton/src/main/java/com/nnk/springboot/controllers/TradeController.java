@@ -33,8 +33,7 @@ public class TradeController {
 
     @ApiOperation(value = "Retrieving all trade.")
     @GetMapping("/trade/list")
-    public String home(Model model)
-    {
+    public String home(Model model) {
         model.addAttribute("trades", tradeService.getTrades());
         LOGGER.info("Trades successfully found - code : {}", HttpStatus.OK);
         return "trade/list";
@@ -71,7 +70,7 @@ public class TradeController {
     @ApiOperation(value = "Updating one trade after validation.")
     @PostMapping("/trade/update/{id}")
     public String updateTrade(@PathVariable("id") Integer id, @Valid @ModelAttribute("trade") TradeDto tradeDto,
-                             BindingResult result, Model model) {
+                              BindingResult result, Model model) {
         if (result.hasErrors()) {
             LOGGER.error("Trade cannot be updated - code : {}", HttpStatus.OK);
             return "trade/update";
